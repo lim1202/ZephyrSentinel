@@ -3,13 +3,9 @@ version: "1.0"
 targets:
   - id: "crimsonwitch-genshin"
     name: "Crimson Witch - Genshin Impact Codes"
-    url: "https://www.crimsonwitch.com/codes/Genshin_Impact"
-    type: "webpage"
-    selector: "#old-codes"
+    url: "https://www.crimsonwitch.com/feeds/Genshin_Impact/RSS"
+    type: "rss"
     enabled: true
-    http:
-      headers:
-        User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     alertOn:
       change: true
       error: true
@@ -17,13 +13,9 @@ targets:
 
   - id: "crimsonwitch-zenless"
     name: "Crimson Witch - Zenless Zone Zero Codes"
-    url: "https://www.crimsonwitch.com/codes/Zenless_Zone_Zero"
-    type: "webpage"
-    selector: "#old-codes"
+    url: "https://www.crimsonwitch.com/feeds/Zenless_Zone_Zero/RSS"
+    type: "rss"
     enabled: true
-    http:
-      headers:
-        User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     alertOn:
       change: true
       error: true
