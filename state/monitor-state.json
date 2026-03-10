@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "updatedAt": "2026-03-10T03:40:55.304Z",
+  "targets": {
+    "crimsonwitch-genshin": {
+      "id": "crimsonwitch-genshin",
+      "lastCheck": "2026-03-10T03:40:55.258Z",
+      "lastHash": "6438196dc89d3fef1f404d1a1998ee3a78a86b07b2369b72bf2886a720c5b10e",
+      "lastContent": "Sorry, there are currently no active codes.",
+      "lastSuccess": true,
+      "lastError": null,
+      "checkCount": 1,
+      "changeCount": 1,
+      "lastChangeAt": "2026-03-10T03:40:55.258Z"
+    },
+    "crimsonwitch-zenless": {
+      "id": "crimsonwitch-zenless",
+      "lastCheck": "2026-03-10T03:40:55.304Z",
+      "lastHash": "6438196dc89d3fef1f404d1a1998ee3a78a86b07b2369b72bf2886a720c5b10e",
+      "lastContent": "Sorry, there are currently no active codes.",
+      "lastSuccess": true,
+      "lastError": null,
+      "checkCount": 1,
+      "changeCount": 1,
+      "lastChangeAt": "2026-03-10T03:40:55.304Z"
+    }
+  }
+}
