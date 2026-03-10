@@ -108,7 +108,7 @@ export class RssMonitor extends BaseMonitor {
   /**
    * Parse RSS item
    */
-  private parseRssItem($item: cheerio.Cheerio<any>): RssItem {
+  private parseRssItem($item: cheerio.Cheerio<Element>): RssItem {
     const item: RssItem = {
       title: $item.find("title").text() ?? "",
       link: $item.find("link").text() ?? "",
@@ -129,7 +129,7 @@ export class RssMonitor extends BaseMonitor {
   /**
    * Parse Atom entry
    */
-  private parseAtomEntry($entry: cheerio.Cheerio<any>): RssItem {
+  private parseAtomEntry($entry: cheerio.Cheerio<Element>): RssItem {
     const item: RssItem = {
       title: $entry.find("title").text() ?? "",
       link: $entry.find("link").attr("href") ?? "",
