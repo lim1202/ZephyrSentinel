@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio";
+import type { Element } from "domhandler";
 import type { TargetConfig } from "../config/schema.js";
 import { hashContent } from "../utils/hash.js";
 import { httpGet } from "../utils/http.js";
