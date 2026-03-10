@@ -15,21 +15,50 @@ on:
         required: false
         type: boolean
         default: false
+      branch:
+        description: 'Specific monitor branch to run (optional, e.g., monitor/crimsonwitch-codes)'
+        required: false
+        type: string
 
 permissions:
   contents: write
 
 jobs:
+  # Discover monitor branches dynamically
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      branches: ${{ steps.list.outputs.branches }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: List monitor branches
+        id: list
+        run: |
+          # Get all monitor/* branches
+          BRANCHES=$(git branch -r | grep 'origin/monitor/' | sed 's/origin\///' | tr -d ' ' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "branches=$BRANCHES" >> $GITHUB_OUTPUT
+          echo "Found branches: $BRANCHES"
+
+  # Run monitoring for each branch using matrix
   monitor:
+    needs: discover
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # Only run on monitor/* branches, not on main
-    if: startsWith(github.ref, 'refs/heads/monitor/')
+    if: needs.discover.outputs.branches != '[]' && needs.discover.outputs.branches != ''
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: ${{ fromJson(needs.discover.outputs.branches) }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: ${{ matrix.branch }}
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -70,6 +99,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: monitoring-state
+          name: monitoring-state-${{ matrix.branch }}
           path: state/
           retention-days: 7
