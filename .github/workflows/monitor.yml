@@ -95,10 +95,16 @@ jobs:
           git diff --quiet --staged || git commit -m "chore: update monitoring state [skip ci]"
           git push
 
+      - name: Prepare artifact name
+        id: artifact-name
+        run: |
+          SANITIZED_NAME=$(echo "${{ matrix.branch }}" | tr '/' '-')
+          echo "name=monitoring-state-${SANITIZED_NAME}" >> $GITHUB_OUTPUT
+
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: monitoring-state-${{ replace(matrix.branch, '/', '-') }}
+          name: ${{ steps.artifact-name.outputs.name }}
           path: state/
           retention-days: 7
