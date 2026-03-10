@@ -1,6 +1,6 @@
 # ZephyrSentinel
 
-[![Test](https://github.com/owner/ZephyrSentinel/actions/workflows/test.yml/badge.svg)](https://github.com/owner/ZephyrSentinel/actions/workflows/test.yml)
+[![Test](https://github.com/lim1202/ZephyrSentinel/actions/workflows/test.yml/badge.svg)](https://github.com/lim1202/ZephyrSentinel/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A website/API change monitoring and notification system designed for GitHub Actions. Monitor changes on websites, APIs, and RSS feeds, and get notified through multiple channels.
