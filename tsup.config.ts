@@ -11,8 +11,5 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   minify: false,
-  banner: {
-    js: "#!/usr/bin/env node",
-  },
   external: ["axios", "cheerio", "crypto-js", "diff", "js-yaml", "zod"],
 });
