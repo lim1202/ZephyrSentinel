@@ -6,8 +6,8 @@ node_modules/
 # Build output
 dist/
 
-# State files (contains sensitive monitoring data)
-state/
+# State files are tracked (git storage backend)
+# state/ is NOT ignored to allow git-based state persistence
 
 # Environment variables
 .env
