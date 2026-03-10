@@ -1,15 +1,15 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-03-10T14:00:21.520Z",
+  "updatedAt": "2026-03-10T15:01:21.570Z",
   "targets": {
     "crimsonwitch-zenless": {
       "id": "crimsonwitch-zenless",
-      "lastCheck": "2026-03-10T14:00:21.519Z",
+      "lastCheck": "2026-03-10T15:01:21.569Z",
       "lastHash": "c01b8f5cd61eba922ded4edce08228c76df7ccd49b2abb75ccf5bcb753f21b59",
       "lastContent": "[\n  {\n    \"title\": \"ZZZGIGO\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\",\n    \"description\": \"Senior Investigator Log x1 — W-Engine Energy Module x1 — Denny x15000\",\n    \"pubDate\": \"Thu, 12 Feb 2026 21:12:22 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  },\n  {\n    \"title\": \"ZZZCUTENESS\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\",\n    \"description\": \"W-Engine Energy Module x1 — Denny x20000\",\n    \"pubDate\": \"Sat, 07 Feb 2026 20:51:47 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  },\n  {\n    \"title\": \"ZZZCREATOR26\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\",\n    \"description\": \"Senior Investigator Log x2 — W-Engine Energy Module x3 — Denny x10000\",\n    \"pubDate\": \"Wed, 04 Feb 2026 05:49:28 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  },\n  {\n    \"title\": \"AODDebut\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\",\n    \"description\": \"Polychrome x30 — Senior Investigator Log x3 — Denny x6666\",\n    \"pubDate\": \"Mon, 02 Feb 2026 21:17:28 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  },\n  {\n    \"title\": \"ZZZ26DELUSION\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\",\n    \"description\": \"Polychrome x60 — Denny x6666\",\n    \"pubDate\": \"Sun, 01 Feb 2026 15:23:48 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  },\n  {\n    \"title\": \"ZZZANGELS\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\",\n    \"description\": \"Polychrome x50\",\n    \"pubDate\": \"Wed, 28 Jan 2026 00:07:17 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  },\n  {\n    \"title\": \"ZHAOISFREE\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\",\n    \"description\": \"Polychrome x50\",\n    \"pubDate\": \"Sat, 20 Dec 2025 11:52:38 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  },\n  {\n    \"title\": \"ZENLESSGIFT\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\",\n    \"description\": \"Polychrome x50 — Official Investigator Log x2 — W-Engine Power Supply x3 — Bangboo Algorithm Module x1\",\n    \"pubDate\": \"Thu, 04 Jul 2024 00:00:00 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  }\n]",
       "lastSuccess": true,
       "lastError": null,
-      "checkCount": 9,
+      "checkCount": 10,
       "changeCount": 2,
       "lastChangeAt": "2026-03-10T08:56:40.816Z"
     },
