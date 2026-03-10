@@ -1,0 +1,47 @@
+version: "1.0"
+
+targets:
+  # 美服艺术作品 API
+  - id: "azurlane-us-artworks"
+    name: "Azur Lane US Artworks"
+    url: "https://azurlane.yo-star.com/api/admin/special/public-list?page_index=1&page_num=12&type=1"
+    type: "api"
+    jsonPath: "$.data"
+    enabled: true
+    http:
+      headers:
+        User-Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
+        accept: "application/json, text/plain, */*"
+    alertOn:
+      change: true
+      error: true
+      recovery: true
+
+  # 日服艺术作品 API
+  - id: "azurlane-jp-artworks"
+    name: "Azur Lane JP Artworks"
+    url: "https://www.azurlane.jp/api/special/list?index=1&size=12&type=1"
+    type: "api"
+    jsonPath: "$.data"
+    enabled: true
+    http:
+      headers:
+        User-Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
+        Accept: "application/json, text/plain, */*"
+        Referer: "https://www.azurlane.jp/special"
+    alertOn:
+      change: true
+      error: true
+      recovery: true
+
+notifications:
+  dingtalk:
+    enabled: true
+    webhook: "${DINGTALK_WEBHOOK}"
+    secret: "${DINGTALK_SECRET}"
+    msgType: "markdown"
+
+storage:
+  type: "git"
+  git:
+    path: "state"
