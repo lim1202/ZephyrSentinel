@@ -67,7 +67,12 @@ function sleep(ms: number): Promise<void> {
  * Make an HTTP GET request with retry support
  */
 export async function httpGet(url: string, options: HttpOptions = {}): Promise<HttpResponse> {
-  const opts = { ...DEFAULT_OPTIONS, ...options };
+  const opts = {
+    timeout: options.timeout ?? DEFAULT_OPTIONS.timeout,
+    retries: options.retries ?? DEFAULT_OPTIONS.retries,
+    retryDelay: options.retryDelay ?? DEFAULT_OPTIONS.retryDelay,
+    followRedirects: options.followRedirects ?? DEFAULT_OPTIONS.followRedirects,
+  };
 
   const axiosConfig: AxiosRequestConfig = {
     method: "GET",
@@ -137,7 +142,12 @@ export async function httpPost(
   data?: unknown,
   options: HttpOptions = {}
 ): Promise<HttpResponse> {
-  const opts = { ...DEFAULT_OPTIONS, ...options };
+  const opts = {
+    timeout: options.timeout ?? DEFAULT_OPTIONS.timeout,
+    retries: options.retries ?? DEFAULT_OPTIONS.retries,
+    retryDelay: options.retryDelay ?? DEFAULT_OPTIONS.retryDelay,
+    followRedirects: options.followRedirects ?? DEFAULT_OPTIONS.followRedirects,
+  };
 
   const axiosConfig: AxiosRequestConfig = {
     method: "POST",
