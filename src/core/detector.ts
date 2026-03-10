@@ -73,10 +73,14 @@ export class ChangeDetector {
 
   /**
    * Detect changes using pre-computed hash
+   * Note: This method does NOT normalize content before hashing, because the
+   * pre-computed oldHash was likely computed from un-normalized content.
+   * For normalized comparison, use detect() method instead.
    */
   detectFromHash(oldHash: string | null, newContent: string): ChangeDetectionResult {
-    const normalizedNew = this.normalize(newContent);
-    const newHash = hashContent(normalizedNew);
+    // Do NOT normalize here - oldHash was computed from un-normalized content
+    // This ensures consistency with how Monitor computes contentHash
+    const newHash = hashContent(newContent);
 
     return {
       hasChanges: oldHash !== newHash,
