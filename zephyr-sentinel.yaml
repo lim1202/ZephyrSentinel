@@ -1,0 +1,36 @@
+version: "1.0"
+
+targets:
+  - id: "crimsonwitch-genshin"
+    name: "Crimson Witch - Genshin Impact Codes"
+    url: "https://www.crimsonwitch.com/codes/Genshin_Impact"
+    type: "webpage"
+    selector: "#old-codes"
+    enabled: true
+    alertOn:
+      change: true
+      error: true
+      recovery: true
+
+  - id: "crimsonwitch-zenless"
+    name: "Crimson Witch - Zenless Zone Zero Codes"
+    url: "https://www.crimsonwitch.com/codes/Zenless_Zone_Zero"
+    type: "webpage"
+    selector: "#old-codes"
+    enabled: true
+    alertOn:
+      change: true
+      error: true
+      recovery: true
+
+notifications:
+  dingtalk:
+    enabled: ${DINGTALK_ENABLED:-false}
+    webhook: "${DINGTALK_WEBHOOK}"
+    secret: "${DINGTALK_SECRET}"
+    msgType: "markdown"
+
+storage:
+  type: "git"
+  git:
+    path: "state"
