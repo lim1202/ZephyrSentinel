@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
+import { loadConfig } from "./config/index.js";
 import { Engine } from "./core/engine.js";
 import { createNotifiers } from "./notifiers/index.js";
-import { loadConfig } from "./config/index.js";
 import { logger } from "./utils/logger.js";
 
 const program = new Command();
@@ -215,7 +215,16 @@ function setupLogger(options: { verbose?: boolean; quiet?: boolean }): void {
 /**
  * Print target status
  */
-function printTargetStatus(id: string, state: { lastCheck: string; lastSuccess: boolean; checkCount: number; changeCount: number; lastError?: string | null }): void {
+function printTargetStatus(
+  id: string,
+  state: {
+    lastCheck: string;
+    lastSuccess: boolean;
+    checkCount: number;
+    changeCount: number;
+    lastError?: string | null;
+  }
+): void {
   logger.info(`Target: ${id}`);
   logger.info(`  Last check: ${state.lastCheck ?? "never"}`);
   logger.info(`  Last success: ${state.lastSuccess}`);

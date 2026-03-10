@@ -1,5 +1,5 @@
+import { type DiffResult, compareContent, formatDiff, getChangeSummary } from "../utils/diff.js";
 import { hashContent, normalizeContent } from "../utils/hash.js";
-import { compareContent, formatDiff, getChangeSummary, type DiffResult } from "../utils/diff.js";
 
 /**
  * Change detection result
@@ -54,9 +54,7 @@ export class ChangeDetector {
     }
 
     // Generate diff if there are changes
-    const diff = normalizedOld
-      ? compareContent(normalizedOld, normalizedNew)
-      : null;
+    const diff = normalizedOld ? compareContent(normalizedOld, normalizedNew) : null;
 
     const result: ChangeDetectionResult = {
       hasChanges: true,
@@ -76,10 +74,7 @@ export class ChangeDetector {
   /**
    * Detect changes using pre-computed hash
    */
-  detectFromHash(
-    oldHash: string | null,
-    newContent: string
-  ): ChangeDetectionResult {
+  detectFromHash(oldHash: string | null, newContent: string): ChangeDetectionResult {
     const normalizedNew = this.normalize(newContent);
     const newHash = hashContent(normalizedNew);
 
@@ -99,9 +94,10 @@ export class ChangeDetector {
     if (this.options.customNormalizer) {
       normalized = this.options.customNormalizer(normalized);
     } else {
-      const opts: { ignoreWhitespace?: boolean; trimLines?: boolean; removeEmptyLines?: boolean } = {
-        trimLines: true,
-      };
+      const opts: { ignoreWhitespace?: boolean; trimLines?: boolean; removeEmptyLines?: boolean } =
+        {
+          trimLines: true,
+        };
       if (this.options.normalizeWhitespace !== undefined) {
         opts.ignoreWhitespace = this.options.normalizeWhitespace;
       }
@@ -126,8 +122,6 @@ export class ChangeDetector {
 /**
  * Create a default change detector
  */
-export function createChangeDetector(
-  options?: ChangeDetectorOptions
-): ChangeDetector {
+export function createChangeDetector(options?: ChangeDetectorOptions): ChangeDetector {
   return new ChangeDetector(options);
 }

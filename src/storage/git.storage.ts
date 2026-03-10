@@ -1,6 +1,8 @@
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import type { StorageConfig } from "../config/schema.js";
+import type { MonitorResult } from "../monitors/base.js";
 import { logger } from "../utils/logger.js";
 import {
   type IStorage,
@@ -9,8 +11,6 @@ import {
   createEmptyState,
   createTargetState,
 } from "./base.js";
-import type { MonitorResult } from "../monitors/base.js";
-import type { StorageConfig } from "../config/schema.js";
 
 /**
  * Git-based state storage

@@ -66,10 +66,7 @@ function sleep(ms: number): Promise<void> {
 /**
  * Make an HTTP GET request with retry support
  */
-export async function httpGet(
-  url: string,
-  options: HttpOptions = {}
-): Promise<HttpResponse> {
+export async function httpGet(url: string, options: HttpOptions = {}): Promise<HttpResponse> {
   const opts = { ...DEFAULT_OPTIONS, ...options };
 
   const axiosConfig: AxiosRequestConfig = {
@@ -125,19 +122,11 @@ export async function httpGet(
         };
       }
 
-      throw new HttpError(
-        lastError?.message ?? "Unknown HTTP error",
-        lastError?.code,
-        url
-      );
+      throw new HttpError(lastError?.message ?? "Unknown HTTP error", lastError?.code, url);
     }
   }
 
-  throw new HttpError(
-    lastError?.message ?? "Max retries exceeded",
-    lastError?.code,
-    url
-  );
+  throw new HttpError(lastError?.message ?? "Max retries exceeded", lastError?.code, url);
 }
 
 /**
@@ -203,19 +192,11 @@ export async function httpPost(
         };
       }
 
-      throw new HttpError(
-        lastError?.message ?? "Unknown HTTP error",
-        lastError?.code,
-        url
-      );
+      throw new HttpError(lastError?.message ?? "Unknown HTTP error", lastError?.code, url);
     }
   }
 
-  throw new HttpError(
-    lastError?.message ?? "Max retries exceeded",
-    lastError?.code,
-    url
-  );
+  throw new HttpError(lastError?.message ?? "Max retries exceeded", lastError?.code, url);
 }
 
 /**

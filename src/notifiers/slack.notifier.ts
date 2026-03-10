@@ -1,7 +1,7 @@
+import type { NotificationChannel, SlackConfig } from "../config/schema.js";
 import { httpPost } from "../utils/http.js";
 import { logger } from "../utils/logger.js";
 import { BaseNotifier, type NotificationPayload, type NotificationResult } from "./base.js";
-import type { NotificationChannel, SlackConfig } from "../config/schema.js";
 
 /**
  * Slack webhook notifier implementation

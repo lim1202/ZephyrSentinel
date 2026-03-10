@@ -1,7 +1,7 @@
+import type { NotificationChannel, WebhookConfig } from "../config/schema.js";
 import { httpPost } from "../utils/http.js";
 import { logger } from "../utils/logger.js";
 import { BaseNotifier, type NotificationPayload, type NotificationResult } from "./base.js";
-import type { NotificationChannel, WebhookConfig } from "../config/schema.js";
 
 /**
  * Generic webhook notifier implementation
@@ -101,10 +101,7 @@ export class WebhookNotifier extends BaseNotifier<WebhookConfig> {
   /**
    * Apply custom template
    */
-  private applyTemplate(
-    template: string,
-    payload: NotificationPayload
-  ): Record<string, unknown> {
+  private applyTemplate(template: string, payload: NotificationPayload): Record<string, unknown> {
     try {
       // Simple template substitution
       let result = template;

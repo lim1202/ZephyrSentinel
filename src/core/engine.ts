@@ -2,12 +2,12 @@ import pLimit from "p-limit";
 import type { Config, TargetConfig } from "../config/index.js";
 import { loadConfig } from "../config/index.js";
 import { createMonitor } from "../monitors/index.js";
-import { createNotifiers, type NotificationPayload } from "../notifiers/index.js";
-import { createStorage } from "../storage/index.js";
+import { type NotificationPayload, createNotifiers } from "../notifiers/index.js";
 import { createTargetState } from "../storage/base.js";
-import { ChangeDetector } from "./detector.js";
-import { ResultHandler, type ExecutionSummary, type ProcessedResult } from "./result-handler.js";
+import { createStorage } from "../storage/index.js";
 import { logger } from "../utils/logger.js";
+import { ChangeDetector } from "./detector.js";
+import { type ExecutionSummary, type ProcessedResult, ResultHandler } from "./result-handler.js";
 
 /**
  * Engine options
@@ -97,10 +97,7 @@ export class Engine {
   /**
    * Check a single target
    */
-  private async checkTarget(
-    target: TargetConfig,
-    dryRun = false
-  ): Promise<ProcessedResult | null> {
+  private async checkTarget(target: TargetConfig, dryRun = false): Promise<ProcessedResult | null> {
     const monitor = createMonitor(target);
 
     try {
@@ -143,12 +140,7 @@ export class Engine {
     );
 
     // Log result
-    logger.monitorResult(
-      target.id,
-      target.name,
-      changeResult.hasChanges,
-      monitorResult.error
-    );
+    logger.monitorResult(target.id, target.name, changeResult.hasChanges, monitorResult.error);
 
     // Send notifications
     if (processedResult.shouldNotify && !dryRun) {

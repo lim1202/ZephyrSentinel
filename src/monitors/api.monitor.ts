@@ -1,9 +1,9 @@
 import { JSONPath } from "jsonpath-plus";
-import { BaseMonitor, type MonitorCheckOptions, type MonitorResult } from "./base.js";
-import { httpGet } from "../utils/http.js";
-import { hashContent } from "../utils/hash.js";
-import { logger } from "../utils/logger.js";
 import type { TargetConfig } from "../config/schema.js";
+import { hashContent } from "../utils/hash.js";
+import { httpGet } from "../utils/http.js";
+import { logger } from "../utils/logger.js";
+import { BaseMonitor, type MonitorCheckOptions, type MonitorResult } from "./base.js";
 
 /**
  * API monitor - monitors JSON API responses
@@ -50,10 +50,7 @@ export class ApiMonitor extends BaseMonitor {
         try {
           data = JSON.parse(response.data);
         } catch {
-          return this.createErrorResult(
-            "Response is not valid JSON",
-            Date.now() - startTime
-          );
+          return this.createErrorResult("Response is not valid JSON", Date.now() - startTime);
         }
       } else {
         data = response.data;

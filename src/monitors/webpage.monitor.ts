@@ -1,9 +1,9 @@
 import * as cheerio from "cheerio";
-import { BaseMonitor, type MonitorCheckOptions, type MonitorResult } from "./base.js";
-import { httpGet } from "../utils/http.js";
-import { hashContent, normalizeContent } from "../utils/hash.js";
-import { logger } from "../utils/logger.js";
 import type { TargetConfig } from "../config/schema.js";
+import { hashContent, normalizeContent } from "../utils/hash.js";
+import { httpGet } from "../utils/http.js";
+import { logger } from "../utils/logger.js";
+import { BaseMonitor, type MonitorCheckOptions, type MonitorResult } from "./base.js";
 
 /**
  * Webpage monitor - monitors HTML content
@@ -42,9 +42,8 @@ export class WebpageMonitor extends BaseMonitor {
       }
 
       // Parse and extract content
-      const html = typeof response.data === "string"
-        ? response.data
-        : JSON.stringify(response.data);
+      const html =
+        typeof response.data === "string" ? response.data : JSON.stringify(response.data);
 
       const content = this.extractContent(html);
       const normalizedContent = this.normalizeContent(content);

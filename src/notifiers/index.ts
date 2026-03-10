@@ -6,7 +6,7 @@ import type {
   TelegramConfig,
   WebhookConfig,
 } from "../config/schema.js";
-import { BaseNotifier, type NotificationPayload, type NotificationResult } from "./base.js";
+import type { BaseNotifier, NotificationPayload, NotificationResult } from "./base.js";
 import { DingTalkNotifier } from "./dingtalk.notifier.js";
 import { SlackNotifier } from "./slack.notifier.js";
 import { TelegramNotifier } from "./telegram.notifier.js";
@@ -60,9 +60,7 @@ export function createNotifier<K extends keyof NotifierMap>(
 /**
  * Create all enabled notifiers from configuration
  */
-export function createNotifiers(
-  config: NotificationsConfig
-): BaseNotifier[] {
+export function createNotifiers(config: NotificationsConfig): BaseNotifier[] {
   const notifiers: BaseNotifier[] = [];
 
   if (config.dingtalk?.enabled) {

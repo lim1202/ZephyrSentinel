@@ -115,12 +115,7 @@ export class Logger {
   /**
    * Log a monitoring result
    */
-  monitorResult(
-    targetId: string,
-    targetName: string,
-    hasChanges: boolean,
-    error?: string
-  ): void {
+  monitorResult(targetId: string, targetName: string, hasChanges: boolean, error?: string): void {
     const status = error
       ? this.colors
         ? pc.red("✗ ERROR")
@@ -147,13 +142,7 @@ export class Logger {
    * Log notification sent
    */
   notificationSent(channel: NotificationChannel, success: boolean): void {
-    const status = success
-      ? this.colors
-        ? pc.green("✓")
-        : "✓"
-      : this.colors
-        ? pc.red("✗")
-        : "✗";
+    const status = success ? (this.colors ? pc.green("✓") : "✓") : this.colors ? pc.red("✗") : "✗";
     this.info(`${status} Notification sent via ${channel}`);
   }
 

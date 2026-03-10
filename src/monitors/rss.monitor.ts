@@ -1,9 +1,9 @@
 import * as cheerio from "cheerio";
-import { BaseMonitor, type MonitorCheckOptions, type MonitorResult } from "./base.js";
-import { httpGet } from "../utils/http.js";
-import { hashContent } from "../utils/hash.js";
-import { logger } from "../utils/logger.js";
 import type { TargetConfig } from "../config/schema.js";
+import { hashContent } from "../utils/hash.js";
+import { httpGet } from "../utils/http.js";
+import { logger } from "../utils/logger.js";
+import { BaseMonitor, type MonitorCheckOptions, type MonitorResult } from "./base.js";
 
 /**
  * RSS feed item
@@ -55,9 +55,7 @@ export class RssMonitor extends BaseMonitor {
         );
       }
 
-      const xml = typeof response.data === "string"
-        ? response.data
-        : JSON.stringify(response.data);
+      const xml = typeof response.data === "string" ? response.data : JSON.stringify(response.data);
 
       // Parse RSS/Atom feed
       const items = this.parseFeed(xml);

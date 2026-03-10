@@ -1,7 +1,7 @@
+import type { NotificationChannel, TelegramConfig } from "../config/schema.js";
 import { httpPost } from "../utils/http.js";
 import { logger } from "../utils/logger.js";
 import { BaseNotifier, type NotificationPayload, type NotificationResult } from "./base.js";
-import type { NotificationChannel, TelegramConfig } from "../config/schema.js";
 
 /**
  * Telegram API response
@@ -117,9 +117,7 @@ export class TelegramNotifier extends BaseNotifier<TelegramConfig> {
    * Format body for HTML
    */
   private formatBodyHtml(body: string): string {
-    return body
-      .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
-      .replace(/`([^`]+)`/g, "<code>$1</code>");
+    return body.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>").replace(/`([^`]+)`/g, "<code>$1</code>");
   }
 
   /**
@@ -133,10 +131,7 @@ export class TelegramNotifier extends BaseNotifier<TelegramConfig> {
    * Escape HTML special characters
    */
   private escapeHtml(text: string): string {
-    return text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
   /**

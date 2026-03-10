@@ -1,10 +1,16 @@
 import type { TargetConfig } from "../config/schema.js";
-import { BaseMonitor } from "./base.js";
-import { WebpageMonitor } from "./webpage.monitor.js";
 import { ApiMonitor } from "./api.monitor.js";
+import type { BaseMonitor } from "./base.js";
 import { RssMonitor } from "./rss.monitor.js";
+import { WebpageMonitor } from "./webpage.monitor.js";
 
-export { BaseMonitor, type MonitorCheckOptions, type MonitorResult, MonitorConfigError, MonitorError } from "./base.js";
+export {
+  BaseMonitor,
+  type MonitorCheckOptions,
+  type MonitorResult,
+  MonitorConfigError,
+  MonitorError,
+} from "./base.js";
 export { WebpageMonitor } from "./webpage.monitor.js";
 export { ApiMonitor } from "./api.monitor.js";
 export { RssMonitor } from "./rss.monitor.js";

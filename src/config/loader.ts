@@ -1,9 +1,9 @@
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { load } from "js-yaml";
-import { z } from "zod";
-import { ConfigSchema, type Config } from "./schema.js";
+import type { z } from "zod";
 import { logger } from "../utils/logger.js";
+import { type Config, ConfigSchema } from "./schema.js";
 
 /**
  * Configuration file names to search for
@@ -81,10 +81,7 @@ function findConfigFile(explicitPath?: string): string | null {
  * Substitute environment variables in configuration
  * Supports ${VAR_NAME} and ${VAR_NAME:-default} syntax
  */
-function substituteEnvVars(
-  value: unknown,
-  env: NodeJS.ProcessEnv
-): unknown {
+function substituteEnvVars(value: unknown, env: NodeJS.ProcessEnv): unknown {
   if (typeof value === "string") {
     // Match ${VAR} or ${VAR:-default}
     return value.replace(/\$\{(\w+)(?::-(.*?))?\}/g, (_, varName, defaultValue) => {

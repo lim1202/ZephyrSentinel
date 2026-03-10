@@ -1,8 +1,8 @@
-import crypto from "crypto";
+import crypto from "node:crypto";
+import type { DingTalkConfig, NotificationChannel } from "../config/schema.js";
 import { httpPost } from "../utils/http.js";
 import { logger } from "../utils/logger.js";
 import { BaseNotifier, type NotificationPayload, type NotificationResult } from "./base.js";
-import type { DingTalkConfig, NotificationChannel } from "../config/schema.js";
 
 /**
  * DingTalk API response
@@ -52,10 +52,7 @@ export class DingTalkNotifier extends BaseNotifier<DingTalkConfig> {
       const data = response.data as DingTalkResponse;
 
       if (data.errcode !== 0) {
-        return this.createErrorResult(
-          `DingTalk API error: ${data.errmsg}`,
-          Date.now() - startTime
-        );
+        return this.createErrorResult(`DingTalk API error: ${data.errmsg}`, Date.now() - startTime);
       }
 
       return this.createSuccessResult(Date.now() - startTime);

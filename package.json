@@ -20,13 +20,7 @@
     "format": "biome format --write .",
     "typecheck": "tsc --noEmit"
   },
-  "keywords": [
-    "monitor",
-    "change-detection",
-    "notification",
-    "github-actions",
-    "webhook"
-  ],
+  "keywords": ["monitor", "change-detection", "notification", "github-actions", "webhook"],
   "author": "",
   "license": "MIT",
   "dependencies": {

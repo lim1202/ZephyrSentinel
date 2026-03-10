@@ -1,6 +1,6 @@
 import type { NotificationChannel } from "../config/schema.js";
-import type { MonitorResult } from "../monitors/base.js";
 import type { ChangeDetectionResult } from "../core/detector.js";
+import type { MonitorResult } from "../monitors/base.js";
 
 /**
  * Notification payload

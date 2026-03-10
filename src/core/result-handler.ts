@@ -1,7 +1,7 @@
-import type { MonitorResult } from "../monitors/base.js";
-import type { ChangeDetectionResult } from "./detector.js";
-import type { TargetState } from "../storage/base.js";
 import type { TargetConfig } from "../config/schema.js";
+import type { MonitorResult } from "../monitors/base.js";
+import type { TargetState } from "../storage/base.js";
+import type { ChangeDetectionResult } from "./detector.js";
 
 /**
  * Processed monitoring result with full context
@@ -19,12 +19,7 @@ export interface ProcessedResult {
 /**
  * Type of notification to send
  */
-export type NotificationType =
-  | "change"
-  | "error"
-  | "recovery"
-  | "first_check"
-  | "none";
+export type NotificationType = "change" | "error" | "recovery" | "first_check" | "none";
 
 /**
  * Engine execution summary
@@ -126,10 +121,7 @@ export class ResultHandler {
   /**
    * Create execution summary from results
    */
-  createSummary(
-    results: ProcessedResult[],
-    duration: number
-  ): ExecutionSummary {
+  createSummary(results: ProcessedResult[], duration: number): ExecutionSummary {
     let successful = 0;
     let failed = 0;
     let changed = 0;
@@ -172,7 +164,7 @@ export class ResultHandler {
   formatSummary(summary: ExecutionSummary): string {
     const lines: string[] = [];
 
-    lines.push(`Execution Summary:`);
+    lines.push("Execution Summary:");
     lines.push(`  Total targets: ${summary.totalTargets}`);
     lines.push(`  Successful: ${summary.successful}`);
     lines.push(`  Failed: ${summary.failed}`);

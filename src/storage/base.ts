@@ -78,17 +78,18 @@ export function createTargetState(
   previousState?: TargetState | null
 ): TargetState {
   const now = new Date().toISOString();
-  const hasChanges = previousState?.lastHash !== result.contentHash && previousState?.lastHash !== null;
+  const hasChanges =
+    previousState?.lastHash !== result.contentHash && previousState?.lastHash !== null;
 
   return {
     id: result.targetId,
     lastCheck: now,
-    lastHash: result.success ? result.contentHash ?? null : previousState?.lastHash ?? null,
-    lastContent: result.success ? result.content ?? null : previousState?.lastContent ?? null,
+    lastHash: result.success ? (result.contentHash ?? null) : (previousState?.lastHash ?? null),
+    lastContent: result.success ? (result.content ?? null) : (previousState?.lastContent ?? null),
     lastSuccess: result.success,
-    lastError: result.success ? null : result.error ?? null,
+    lastError: result.success ? null : (result.error ?? null),
     checkCount: (previousState?.checkCount ?? 0) + 1,
     changeCount: (previousState?.changeCount ?? 0) + (hasChanges ? 1 : 0),
-    lastChangeAt: hasChanges ? now : previousState?.lastChangeAt ?? null,
+    lastChangeAt: hasChanges ? now : (previousState?.lastChangeAt ?? null),
   };
 }
