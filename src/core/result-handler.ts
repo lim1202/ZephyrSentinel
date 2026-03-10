@@ -54,12 +54,12 @@ export class ResultHandler {
       recovery: true,
     };
 
-    // First check
+    // First check - notify as a change
     if (!previousState) {
-      return {
-        shouldNotify: false, // Don't notify on first check by default
-        type: "first_check",
-      };
+      if (alertConfig.change) {
+        return { shouldNotify: true, type: "first_check" };
+      }
+      return { shouldNotify: false, type: "first_check" };
     }
 
     // Error case
