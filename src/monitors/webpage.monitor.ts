@@ -6,23 +6,12 @@ import { logger } from "../utils/logger.js";
 import type { TargetConfig } from "../config/schema.js";
 
 /**
- * Webpage monitor configuration
- */
-interface WebpageTargetConfig extends TargetConfig {
-  type: "webpage";
-  selector?: string;
-  excludeSelectors?: string[];
-  stripTags?: boolean;
-  ignoreWhitespace?: boolean;
-}
-
-/**
  * Webpage monitor - monitors HTML content
  */
 export class WebpageMonitor extends BaseMonitor {
-  private webpageConfig: WebpageTargetConfig;
+  private webpageConfig: TargetConfig & { type: "webpage" };
 
-  constructor(config: WebpageTargetConfig) {
+  constructor(config: TargetConfig & { type: "webpage" }) {
     super(config);
     this.webpageConfig = config;
   }

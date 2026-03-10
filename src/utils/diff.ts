@@ -1,5 +1,4 @@
 import * as diff from "diff";
-import type { Change } from "diff";
 
 /**
  * Diff result

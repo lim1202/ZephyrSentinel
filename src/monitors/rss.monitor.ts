@@ -17,21 +17,12 @@ interface RssItem {
 }
 
 /**
- * RSS monitor configuration
- */
-interface RssTargetConfig extends TargetConfig {
-  type: "rss";
-  fields?: string[];
-  maxItems?: number;
-}
-
-/**
  * RSS monitor - monitors RSS/Atom feeds
  */
 export class RssMonitor extends BaseMonitor {
-  private rssConfig: RssTargetConfig;
+  private rssConfig: TargetConfig & { type: "rss" };
 
-  constructor(config: RssTargetConfig) {
+  constructor(config: TargetConfig & { type: "rss" }) {
     super(config);
     this.rssConfig = config;
   }
@@ -97,14 +88,14 @@ export class RssMonitor extends BaseMonitor {
     if (rssItems.length > 0) {
       rssItems.each((_, element) => {
         const $item = $(element);
-        items.push(this.parseRssItem($, $item));
+        items.push(this.parseRssItem($item));
       });
     } else {
       // Try Atom format
       const atomEntries = $("entry");
       atomEntries.each((_, element) => {
         const $entry = $(element);
-        items.push(this.parseAtomEntry($, $entry));
+        items.push(this.parseAtomEntry($entry));
       });
     }
 
@@ -119,7 +110,7 @@ export class RssMonitor extends BaseMonitor {
   /**
    * Parse RSS item
    */
-  private parseRssItem($: cheerio.CheerioAPI, $item: cheerio.Cheerio<any>): RssItem {
+  private parseRssItem($item: cheerio.Cheerio<any>): RssItem {
     const item: RssItem = {
       title: $item.find("title").text() ?? "",
       link: $item.find("link").text() ?? "",
@@ -140,7 +131,7 @@ export class RssMonitor extends BaseMonitor {
   /**
    * Parse Atom entry
    */
-  private parseAtomEntry($: cheerio.CheerioAPI, $entry: cheerio.Cheerio<any>): RssItem {
+  private parseAtomEntry($entry: cheerio.Cheerio<any>): RssItem {
     const item: RssItem = {
       title: $entry.find("title").text() ?? "",
       link: $entry.find("link").attr("href") ?? "",

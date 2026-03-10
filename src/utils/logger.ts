@@ -1,10 +1,14 @@
 import pc from "picocolors";
-import type { NotificationChannel } from "./config/schema.js";
 
 /**
  * Log level enum
  */
 export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+
+/**
+ * Notification channel type
+ */
+export type NotificationChannel = "dingtalk" | "telegram" | "email" | "webhook" | "slack";
 
 /**
  * Logger configuration

@@ -6,21 +6,12 @@ import { logger } from "../utils/logger.js";
 import type { TargetConfig } from "../config/schema.js";
 
 /**
- * API monitor configuration
- */
-interface ApiTargetConfig extends TargetConfig {
-  type: "api";
-  jsonPath?: string;
-  jqFilter?: string;
-}
-
-/**
  * API monitor - monitors JSON API responses
  */
 export class ApiMonitor extends BaseMonitor {
-  private apiConfig: ApiTargetConfig;
+  private apiConfig: TargetConfig & { type: "api" };
 
-  constructor(config: ApiTargetConfig) {
+  constructor(config: TargetConfig & { type: "api" }) {
     super(config);
     this.apiConfig = config;
   }
@@ -96,7 +87,7 @@ export class ApiMonitor extends BaseMonitor {
     try {
       const result = JSONPath({
         path: this.apiConfig.jsonPath,
-        json: data,
+        json: data as Record<string, unknown>,
         wrap: false,
       });
       return result;

@@ -4,7 +4,7 @@ import { Command } from "commander";
 import { Engine } from "./core/engine.js";
 import { createNotifiers } from "./notifiers/index.js";
 import { loadConfig } from "./config/index.js";
-import { createLogger, logger } from "./utils/logger.js";
+import { logger } from "./utils/logger.js";
 
 const program = new Command();
 
@@ -31,8 +31,9 @@ program
     const engine = new Engine();
 
     try {
+      const configPath = cmd.parent.opts().config;
       const summary = await engine.run({
-        configPath: cmd.parent.opts().config,
+        configPath,
         targetId: options.target,
         concurrency: Number.parseInt(options.concurrency, 10),
         dryRun: options.dryRun,
@@ -57,12 +58,13 @@ program
   .command("test")
   .description("Test notification channels")
   .argument("[channel]", "Channel to test (dingtalk, telegram, webhook, slack)")
-  .action(async (channel, options, cmd) => {
+  .action(async (channel, _options, cmd) => {
     setupLogger(cmd.parent.opts());
 
     try {
+      const configPath = cmd.parent.opts().config;
       const config = await loadConfig({
-        configPath: cmd.parent.opts().config,
+        configPath,
       });
 
       const notifiers = createNotifiers(config.notifications);
@@ -120,12 +122,13 @@ program
 program
   .command("validate")
   .description("Validate configuration file")
-  .action(async (options, cmd) => {
+  .action(async (_options, cmd) => {
     setupLogger(cmd.parent.opts());
 
     try {
+      const configPath = cmd.parent.opts().config;
       const config = await loadConfig({
-        configPath: cmd.parent.opts().config,
+        configPath,
       });
 
       logger.info("✓ Configuration is valid");
@@ -157,12 +160,13 @@ program
     setupLogger(cmd.parent.opts());
 
     try {
+      const configPath = cmd.parent.opts().config;
       const config = await loadConfig({
-        configPath: cmd.parent.opts().config,
+        configPath,
       });
 
       const engine = new Engine();
-      await engine.loadConfiguration({ configPath: cmd.parent.opts().config });
+      await engine.loadConfiguration({ configPath });
 
       // Import storage to read state
       const { createStorage } = await import("./storage/index.js");
@@ -211,15 +215,15 @@ function setupLogger(options: { verbose?: boolean; quiet?: boolean }): void {
 /**
  * Print target status
  */
-function printTargetStatus(id: string, state: { [key: string]: unknown }): void {
+function printTargetStatus(id: string, state: { lastCheck: string; lastSuccess: boolean; checkCount: number; changeCount: number; lastError?: string | null }): void {
   logger.info(`Target: ${id}`);
-  logger.info(`  Last check: ${(state as { lastCheck: string }).lastCheck ?? "never"}`);
-  logger.info(`  Last success: ${(state as { lastSuccess: boolean }).lastSuccess}`);
-  logger.info(`  Check count: ${(state as { checkCount: number }).checkCount}`);
-  logger.info(`  Change count: ${(state as { changeCount: number }).changeCount}`);
+  logger.info(`  Last check: ${state.lastCheck ?? "never"}`);
+  logger.info(`  Last success: ${state.lastSuccess}`);
+  logger.info(`  Check count: ${state.checkCount}`);
+  logger.info(`  Change count: ${state.changeCount}`);
 
-  if ((state as { lastError: string | null }).lastError) {
-    logger.info(`  Last error: ${(state as { lastError: string | null }).lastError}`);
+  if (state.lastError) {
+    logger.info(`  Last error: ${state.lastError}`);
   }
 
   logger.info("");

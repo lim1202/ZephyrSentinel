@@ -99,10 +99,16 @@ export class ChangeDetector {
     if (this.options.customNormalizer) {
       normalized = this.options.customNormalizer(normalized);
     } else {
-      normalized = normalizeContent(normalized, {
-        ignoreWhitespace: this.options.normalizeWhitespace,
-        removeEmptyLines: this.options.ignoreEmptyLines,
-      });
+      const opts: { ignoreWhitespace?: boolean; trimLines?: boolean; removeEmptyLines?: boolean } = {
+        trimLines: true,
+      };
+      if (this.options.normalizeWhitespace !== undefined) {
+        opts.ignoreWhitespace = this.options.normalizeWhitespace;
+      }
+      if (this.options.ignoreEmptyLines !== undefined) {
+        opts.removeEmptyLines = this.options.ignoreEmptyLines;
+      }
+      normalized = normalizeContent(normalized, opts);
     }
 
     return normalized;

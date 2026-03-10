@@ -5,11 +5,6 @@ import { BaseNotifier, type NotificationPayload, type NotificationResult } from 
 import type { DingTalkConfig, NotificationChannel } from "../config/schema.js";
 
 /**
- * DingTalk message types
- */
-type DingTalkMsgType = "text" | "markdown" | "actionCard";
-
-/**
  * DingTalk API response
  */
 interface DingTalkResponse {

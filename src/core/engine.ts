@@ -1,10 +1,10 @@
 import pLimit from "p-limit";
 import type { Config, TargetConfig } from "../config/index.js";
 import { loadConfig } from "../config/index.js";
-import { createMonitor, type MonitorResult } from "../monitors/index.js";
+import { createMonitor } from "../monitors/index.js";
 import { createNotifiers, type NotificationPayload } from "../notifiers/index.js";
 import { createStorage } from "../storage/index.js";
-import { createTargetState, type TargetState } from "../storage/base.js";
+import { createTargetState } from "../storage/base.js";
 import { ChangeDetector } from "./detector.js";
 import { ResultHandler, type ExecutionSummary, type ProcessedResult } from "./result-handler.js";
 import { logger } from "../utils/logger.js";
@@ -33,9 +33,8 @@ export class Engine {
    */
   async loadConfiguration(options?: EngineOptions): Promise<Config> {
     if (!this.config) {
-      this.config = await loadConfig({
-        configPath: options?.configPath,
-      });
+      const loaderOptions = options?.configPath ? { configPath: options.configPath } : {};
+      this.config = await loadConfig(loaderOptions);
     }
     return this.config;
   }
