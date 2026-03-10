@@ -1,0 +1,25 @@
+version: "1.0"
+
+global:
+  timeout: 30000
+  concurrency: 3
+
+targets:
+  # Monitor a public API
+  - id: "httpbin-ip"
+    name: "HTTPBin IP Address"
+    url: "https://httpbin.org/ip"
+    type: "api"
+    enabled: true
+
+notifications:
+  dingtalk:
+    enabled: false
+    webhook: "https://oapi.dingtalk.com/robot/send?access_token=your-token"
+    secret: "your-secret"
+    msgType: "markdown"
+
+storage:
+  type: "git"
+  git:
+    path: "state"

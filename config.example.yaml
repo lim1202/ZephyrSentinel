@@ -1,0 +1,73 @@
+version: "1.0"
+
+global:
+  timezone: "UTC"
+  timeout: 30000
+  concurrency: 5
+
+targets:
+  # Example 1: Monitor GitHub releases
+  - id: "github-releases"
+    name: "GitHub Releases Monitor"
+    url: "https://api.github.com/repos/nodejs/node/releases/latest"
+    type: "api"
+    jsonPath: "$.tag_name"
+    checkInterval: 60
+    enabled: true
+    alertOn:
+      change: true
+      error: true
+      recovery: true
+
+  # Example 2: Monitor a webpage
+  - id: "example-webpage"
+    name: "Example Website"
+    url: "https://example.com"
+    type: "webpage"
+    selector: "body"
+    enabled: true
+    http:
+      timeout: 15000
+      retries: 2
+
+  # Example 3: Monitor an RSS feed
+  - id: "example-rss"
+    name: "Example RSS Feed"
+    url: "https://example.com/feed.xml"
+    type: "rss"
+    maxItems: 10
+    enabled: true
+
+notifications:
+  # DingTalk notification
+  dingtalk:
+    enabled: true
+    webhook: "${DINGTALK_WEBHOOK}"
+    secret: "${DINGTALK_SECRET}"
+    msgType: "markdown"
+    atAll: false
+
+  # Telegram notification (optional)
+  # telegram:
+  #   enabled: true
+  #   botToken: "${TELEGRAM_BOT_TOKEN}"
+  #   chatId: "${TELEGRAM_CHAT_ID}"
+  #   parseMode: "HTML"
+
+  # Slack notification (optional)
+  # slack:
+  #   enabled: true
+  #   webhook: "${SLACK_WEBHOOK}"
+
+  # Generic webhook (optional)
+  # webhook:
+  #   enabled: true
+  #   url: "https://your-webhook-url.com/notify"
+  #   headers:
+  #     Authorization: "Bearer ${WEBHOOK_TOKEN}"
+
+storage:
+  type: "git"
+  git:
+    branch: "state"
+    path: "state"
