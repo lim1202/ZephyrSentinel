@@ -89,6 +89,7 @@ export class WebhookNotifier extends BaseNotifier<WebhookConfig> {
         id: payload.targetId,
         name: payload.targetName,
         url: payload.url,
+        webUrl: payload.webUrl,
       },
       status: payload.monitorResult.success ? "success" : "error",
       hasChanges: payload.hasChanges,
@@ -108,6 +109,7 @@ export class WebhookNotifier extends BaseNotifier<WebhookConfig> {
       result = result.replace(/\{\{targetId\}\}/g, payload.targetId);
       result = result.replace(/\{\{targetName\}\}/g, payload.targetName);
       result = result.replace(/\{\{url\}\}/g, payload.url);
+      result = result.replace(/\{\{webUrl\}\}/g, payload.webUrl ?? payload.url);
       result = result.replace(/\{\{timestamp\}\}/g, payload.timestamp);
       result = result.replace(/\{\{hasChanges\}\}/g, String(payload.hasChanges));
 
