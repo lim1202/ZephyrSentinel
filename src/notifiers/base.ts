@@ -82,11 +82,12 @@ export abstract class BaseNotifier<TConfig = unknown> {
    * Format a message body for the notification
    */
   protected formatBody(payload: NotificationPayload): string {
-    const { targetName, url, hasChanges, changeResult, monitorResult } = payload;
+    const { targetName, url, webUrl, hasChanges, changeResult, monitorResult } = payload;
+    const linkUrl = webUrl ?? url;
     const lines: string[] = [];
 
     lines.push(`**Target:** ${targetName}`);
-    lines.push(`**URL:** ${url}`);
+    lines.push(`**URL:** ${linkUrl}`);
     lines.push(`**Time:** ${payload.timestamp}`);
 
     if (!monitorResult.success) {
