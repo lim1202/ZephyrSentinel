@@ -95,21 +95,22 @@ export class TelegramNotifier extends BaseNotifier<TelegramConfig> {
     const title = this.formatTitle(payload);
     const body = this.formatBody(payload);
     const parseMode = this.config.parseMode ?? "HTML";
+    const linkUrl = payload.webUrl ?? payload.url;
 
     let text: string;
     if (parseMode === "HTML") {
-      text = `<b>${this.escapeHtml(title)}</b>\n\n${this.formatBodyHtml(body)}`;
+      text = `<b>${this.escapeHtml(title)}</b>\n\n${this.formatBodyHtml(body)}\n\n<a href="${linkUrl}">View Details</a>`;
     } else if (parseMode === "Markdown" || parseMode === "MarkdownV2") {
-      text = `*${this.escapeMarkdown(title)}*\n\n${this.formatBodyMarkdown(body)}`;
+      text = `*${this.escapeMarkdown(title)}*\n\n${this.formatBodyMarkdown(body)}\n\n[View Details](${linkUrl})`;
     } else {
-      text = `${title}\n\n${body}`;
+      text = `${title}\n\n${body}\n\n${linkUrl}`;
     }
 
     return {
       chat_id: this.config.chatId,
       text,
       parse_mode: parseMode,
-      disable_web_page_preview: true,
+      disable_web_page_preview: false,
     };
   }
 
