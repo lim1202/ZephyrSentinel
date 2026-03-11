@@ -74,6 +74,7 @@ export const TargetConfigSchema = z
     id: z.string().min(1),
     name: z.string().min(1),
     url: z.string().url(),
+    webUrl: z.string().url().optional(),
     enabled: z.boolean().default(true),
     checkInterval: z.number().int().positive().optional(),
     description: z.string().optional(),

@@ -160,6 +160,7 @@ export class DingTalkNotifier extends BaseNotifier<DingTalkConfig> {
   private buildActionCardMessage(payload: NotificationPayload): Record<string, unknown> {
     const title = this.formatTitle(payload);
     const body = this.formatBody(payload);
+    const jumpUrl = payload.webUrl ?? payload.url;
 
     return {
       msgtype: "actionCard",
@@ -167,7 +168,7 @@ export class DingTalkNotifier extends BaseNotifier<DingTalkConfig> {
         title,
         text: `### ${title}\n\n${body}`,
         singleTitle: "View Details",
-        singleURL: payload.url,
+        singleURL: jumpUrl,
       },
     };
   }

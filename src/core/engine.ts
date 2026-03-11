@@ -162,6 +162,7 @@ export class Engine {
       targetId: result.target.id,
       targetName: result.target.name,
       url: result.target.url,
+      webUrl: result.target.webUrl,
       hasChanges: result.changeResult.hasChanges,
       changeResult: result.changeResult,
       monitorResult: result.monitorResult,
