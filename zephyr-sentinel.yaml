@@ -5,6 +5,7 @@ targets:
   - id: "azurlane-us-artworks"
     name: "Azur Lane US Artworks"
     url: "https://azurlane.yo-star.com/api/admin/special/public-list?page_index=1&page_num=12&type=1"
+    webUrl: "https://azurlane.yo-star.com/#/art_exhibition"
     type: "api"
     jsonPath: "$.data"
     enabled: true
@@ -21,6 +22,7 @@ targets:
   - id: "azurlane-jp-artworks"
     name: "Azur Lane JP Artworks"
     url: "https://www.azurlane.jp/api/special/list?index=1&size=12&type=1"
+    webUrl: "https://www.azurlane.jp/special"
     type: "api"
     jsonPath: "$.data"
     enabled: true
