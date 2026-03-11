@@ -79,6 +79,7 @@ export class SlackNotifier extends BaseNotifier<SlackConfig> {
     const color = this.getColor(payload);
     const title = this.formatTitle(payload);
     const body = this.formatBody(payload);
+    const jumpUrl = payload.webUrl ?? payload.url;
 
     const message: Record<string, unknown> = {
       attachments: [
@@ -91,8 +92,8 @@ export class SlackNotifier extends BaseNotifier<SlackConfig> {
           actions: [
             {
               type: "button",
-              text: "View Source",
-              url: payload.url,
+              text: "View Details",
+              url: jumpUrl,
             },
           ],
         },

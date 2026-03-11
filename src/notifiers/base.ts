@@ -9,6 +9,7 @@ export interface NotificationPayload {
   targetId: string;
   targetName: string;
   url: string;
+  webUrl?: string;
   hasChanges: boolean;
   changeResult?: ChangeDetectionResult;
   monitorResult: MonitorResult;
