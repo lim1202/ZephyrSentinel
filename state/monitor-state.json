@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-03-11T10:36:24.871Z",
+  "updatedAt": "2026-03-11T11:31:27.479Z",
   "targets": {
     "crimsonwitch-zenless": {
       "id": "crimsonwitch-zenless",
@@ -15,12 +15,12 @@
     },
     "crimsonwitch-genshin": {
       "id": "crimsonwitch-genshin",
-      "lastCheck": "2026-03-11T10:36:24.871Z",
+      "lastCheck": "2026-03-11T11:31:27.478Z",
       "lastHash": "d5022e7c967537ee9cc8a3fe3a18c469e7d6b28ca8c53d93ede53277d7e3242f",
       "lastContent": "[\n  {\n    \"title\": \"ZECVVP1DT7Z2\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\",\n    \"description\": \"Mora x10000 — Adventurer's Experience x10 — Fine Enhancement Ore x5 — Jueyun Chili Chicken x5 — Stir-Fried Fish Noodles x5\",\n    \"pubDate\": \"Thu, 26 Feb 2026 22:36:16 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  },\n  {\n    \"title\": \"LTT3DVKVLUQZ\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\",\n    \"description\": \"Primogem x30 — Mora x20000 — Broken Drive Shaft x3\",\n    \"pubDate\": \"Wed, 25 Feb 2026 10:27:09 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  },\n  {\n    \"title\": \"8BHA0KFRG94K\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\",\n    \"description\": \"Primogem x60 — Adventurer's Experience x5\",\n    \"pubDate\": \"Sat, 14 Feb 2026 12:28:22 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  },\n  {\n    \"title\": \"8X73KH58KDHN\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\",\n    \"description\": \"Primogem x60 — Adventurer's Experience x5\",\n    \"pubDate\": \"Sat, 03 Jan 2026 06:06:47 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  }\n]",
       "lastSuccess": true,
       "lastError": null,
-      "checkCount": 2,
+      "checkCount": 3,
       "changeCount": 1,
       "lastChangeAt": "2026-03-11T09:52:53.482Z"
     }
