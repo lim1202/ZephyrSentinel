@@ -4,6 +4,7 @@ targets:
   - id: "crimsonwitch-genshin"
     name: "Crimson Witch - Genshin Impact Codes"
     url: "https://www.crimsonwitch.com/feeds/Genshin_Impact/RSS"
+    webUrl: "https://www.crimsonwitch.com/codes/Genshin_Impact"
     type: "rss"
     enabled: true
     alertOn:
@@ -14,6 +15,7 @@ targets:
   - id: "crimsonwitch-zenless"
     name: "Crimson Witch - Zenless Zone Zero Codes"
     url: "https://www.crimsonwitch.com/feeds/Zenless_Zone_Zero/RSS"
+    webUrl: "https://www.crimsonwitch.com/codes/Zenless_Zone_Zero"
     type: "rss"
     enabled: true
     alertOn:
