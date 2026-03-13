@@ -24,11 +24,11 @@ targets:
       recovery: true
 
 notifications:
-  dingtalk:
+  telegram:
     enabled: true
-    webhook: "${DINGTALK_WEBHOOK}"
-    secret: "${DINGTALK_SECRET}"
-    msgType: "markdown"
+    botToken: "${TELEGRAM_BOT_TOKEN}"
+    chatId: "${TELEGRAM_CHAT_ID}"
+    parseMode: "HTML"
 
 storage:
   type: "git"
