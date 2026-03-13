@@ -10,7 +10,7 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)](https://opensource.org/licenses/MIT)
 
 <!-- description -->
-A powerful **website/API change monitoring and notification system** designed for GitHub Actions. Monitor changes on websites, APIs, and RSS feeds, then get notified through multiple channels.
+一个强大的 **网站/API 变更监控与通知系统**，专为 GitHub Actions 设计。监控网站、API 和 RSS 订阅的变更，并通过多种渠道发送通知。
 
 [English](./README.md) · [简体中文](./README.zh-CN.md) · [日本語](./README.ja.md)
 
@@ -18,44 +18,44 @@ A powerful **website/API change monitoring and notification system** designed fo
 
 ---
 
-## ✨ Features
+## ✨ 功能特性
 
 | | |
 |---|---|
-| 🌐 **Multiple Monitor Types** | Webpage, API (JSON), RSS/Atom feeds |
-| 🔍 **Change Detection** | Hash-based comparison with detailed diff output |
-| 📡 **Notification Channels** | DingTalk, Telegram, Slack, Webhook |
-| ⚡ **GitHub Actions Ready** | Designed for serverless execution on GitHub Actions |
-| 💾 **Git State Storage** | State persisted in your repository |
-| ⚙️ **Configurable** | YAML configuration with environment variable support |
-| 🔒 **Type-Safe** | Full TypeScript support with Zod validation |
+| 🌐 **多种监控类型** | 网页、API (JSON)、RSS/Atom 订阅源 |
+| 🔍 **变更检测** | 基于哈希的内容比较，生成详细差异报告 |
+| 📡 **通知渠道** | 钉钉、Telegram、Slack、Webhook |
+| ⚡ **完美适配 GitHub Actions** | 专为无服务器执行环境设计 |
+| 💾 **Git 状态存储** | 状态持久化到您的仓库中 |
+| ⚙️ **灵活配置** | YAML 配置，支持环境变量 |
+| 🔒 **类型安全** | 完整 TypeScript 支持，Zod 验证 |
 
 ---
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-### 1. Install
+### 1. 安装
 
 ```bash
 npm install -g zephyr-sentinel
 ```
 
-Or use directly with npx:
+或直接使用 npx 运行：
 
 ```bash
 npx zephyr-sentinel --help
 ```
 
-### 2. Create Configuration
+### 2. 创建配置文件
 
-Create a `zephyr-sentinel.yaml` file in your repository:
+在仓库中创建 `zephyr-sentinel.yaml` 文件：
 
 ```yaml
 version: "1.0"
 
 targets:
   - id: "github-releases"
-    name: "Node.js Releases"
+    name: "Node.js 发布"
     url: "https://api.github.com/repos/nodejs/node/releases/latest"
     type: "api"
     jsonPath: "$.tag_name"
@@ -74,25 +74,25 @@ storage:
     path: "state"
 ```
 
-### 3. Set Up GitHub Secrets
+### 3. 配置 GitHub Secrets
 
-Add your notification credentials as repository secrets:
+将通知凭据添加为仓库密钥（Secrets）：
 
-| Secret | Description |
-|--------|-------------|
-| `DINGTALK_WEBHOOK` | Your DingTalk webhook URL |
-| `DINGTALK_SECRET` | Your DingTalk signing secret |
+| 密钥 | 说明 |
+|------|------|
+| `DINGTALK_WEBHOOK` | 钉钉 Webhook 地址 |
+| `DINGTALK_SECRET` | 钉钉签名密钥 |
 
-### 4. Create Workflow
+### 4. 创建工作流
 
-Create `.github/workflows/monitor.yml`:
+创建 `.github/workflows/monitor.yml`：
 
 ```yaml
 name: Monitor
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Every 30 minutes
+    - cron: '*/30 * * * *'  # 每 30 分钟执行一次
   workflow_dispatch:
 
 permissions:
@@ -130,83 +130,83 @@ jobs:
 
 ---
 
-## 📖 Configuration Reference
+## 📖 配置参考
 
-### Global Settings
+### 全局设置
 
 ```yaml
 global:
-  timezone: "UTC"        # Timezone for timestamps
-  timeout: 30000         # Default HTTP timeout (ms)
-  concurrency: 5         # Number of concurrent checks
-  failFast: false        # Stop on first error
-  dryRun: false          # Run without saving/sending
+  timezone: "UTC"        # 时间戳时区
+  timeout: 30000          # 默认 HTTP 超时时间（毫秒）
+  concurrency: 5        # 并发检查数量
+  failFast: false        # 遇错即停
+  dryRun: false          # 试运行模式（不保存状态，不发送通知）
 ```
 
-### Monitor Types
+### 监控类型
 
-#### 🌐 Webpage Monitor
+#### 🌐 网页监控
 
-Monitor HTML content with CSS selector support:
+支持 CSS 选择器的 HTML 内容监控：
 
 ```yaml
 targets:
   - id: "my-website"
-    name: "My Website"
+    name: "我的网站"
     url: "https://example.com/page"
     type: "webpage"
-    selector: ".main-content"      # CSS selector (optional)
-    excludeSelectors:              # Elements to exclude (optional)
+    selector: ".main-content"      # CSS 选择器（可选）
+    excludeSelectors:               # 排除的元素（可选）
       - ".ads"
       - "footer"
-    ignoreWhitespace: false        # Normalize whitespace (optional)
+    ignoreWhitespace: false          # 规范化空白字符（可选）
     enabled: true
 ```
 
-#### 🔌 API Monitor
+#### 🔌 API 监控
 
-Monitor JSON API responses with JSONPath support:
+支持 JSONPath 的 JSON API 响应监控：
 
 ```yaml
 targets:
   - id: "api-endpoint"
-    name: "API Monitor"
+    name: "API 监控"
     url: "https://api.example.com/data"
     type: "api"
-    jsonPath: "$.data.version"     # Extract specific field (optional)
+    jsonPath: "$.data.version"       # 提取特定字段（可选）
     http:
       headers:
         Authorization: "Bearer ${API_TOKEN}"
     enabled: true
 ```
 
-#### 📡 RSS Monitor
+#### 📡 RSS 监控
 
-Monitor RSS/Atom feeds:
+RSS/Atom 订阅源监控：
 
 ```yaml
 targets:
   - id: "my-rss"
-    name: "RSS Feed"
+    name: "RSS 订阅"
     url: "https://example.com/feed.xml"
     type: "rss"
-    maxItems: 10                   # Limit items to track (optional)
+    maxItems: 10                     # 追踪的最大条目数（可选）
     enabled: true
 ```
 
-### Notification Channels
+### 通知渠道
 
-#### DingTalk
+#### 钉钉
 
 ```yaml
 notifications:
   dingtalk:
     enabled: true
     webhook: "${DINGTALK_WEBHOOK}"
-    secret: "${DINGTALK_SECRET}"   # For signature verification
-    msgType: "markdown"            # text, markdown, or actionCard
-    atAll: false                   # @all members
-    atMobiles:                     # @specific phones
+    secret: "${DINGTALK_SECRET}"     # 签名验证密钥
+    msgType: "markdown"              # text, markdown, 或 actionCard
+    atAll: false                     # @所有人
+    atMobiles:                       # @指定手机号
       - "13800138000"
 ```
 
@@ -218,7 +218,7 @@ notifications:
     enabled: true
     botToken: "${TELEGRAM_BOT_TOKEN}"
     chatId: "${TELEGRAM_CHAT_ID}"
-    parseMode: "HTML"              # HTML, Markdown, or MarkdownV2
+    parseMode: "HTML"               # HTML, Markdown, 或 MarkdownV2
 ```
 
 #### Slack
@@ -228,9 +228,9 @@ notifications:
   slack:
     enabled: true
     webhook: "${SLACK_WEBHOOK}"
-    channel: "#alerts"             # Optional override
-    username: "ZephyrSentinel"     # Optional bot name
-    iconEmoji: ":bell:"            # Optional icon
+    channel: "#alerts"               # 可选的频道覆盖
+    username: "ZephyrSentinel"        # 可选的机器人名称
+    iconEmoji: ":bell:"              # 可选的图标
 ```
 
 #### Webhook
@@ -245,130 +245,130 @@ notifications:
       Authorization: "Bearer ${WEBHOOK_TOKEN}"
 ```
 
-### Storage Configuration
+### 存储配置
 
 ```yaml
 storage:
-  type: "git"          # git or local
+  type: "git"          # git 或 local
   git:
-    branch: "state"    # Branch for state (not used in GitHub Actions)
-    path: "state"      # Directory path
+    branch: "state"    # 状态分支（在 GitHub Actions 中不使用）
+    path: "state"      # 目录路径
     commitMessage: "chore: update state [skip ci]"
 ```
 
-### Alert Configuration
+### 告警配置
 
-Control when notifications are sent:
+控制发送通知的时机：
 
 ```yaml
 targets:
   - id: "example"
-    # ... other config ...
+    # ... 其他配置 ...
     alertOn:
-      change: true      # Alert on content change
-      error: true       # Alert on check failure
-      recovery: true   # Alert when recovered from error
+      change: true      # 内容变更时通知
+      error: true       # 检查失败时通知
+      recovery: true    # 恢复成功时通知
 ```
 
 ---
 
-## ⌨️ CLI Commands
+## ⌨️ CLI 命令
 
 ```bash
-# Run monitoring checks
+# 执行监控检查
 npx zephyr-sentinel run
 
-# Run for specific target
+# 针对特定目标执行
 npx zephyr-sentinel run --target my-website
 
-# Dry run (no state save, no notifications)
+# 试运行模式（不保存状态，不发送通知）
 npx zephyr-sentinel run --dry-run
 
-# Test notification channels
+# 测试通知渠道
 npx zephyr-sentinel test
 npx zephyr-sentinel test dingtalk
 
-# Validate configuration
+# 验证配置文件
 npx zephyr-sentinel validate
 
-# Show monitoring status
+# 显示监控状态
 npx zephyr-sentinel status
 ```
 
 ---
 
-## 💻 Programmatic Usage
+## 💻 程序化使用
 
 ```typescript
 import { Engine, loadConfig } from "zephyr-sentinel";
 
-// Load configuration
+// 加载配置
 const config = await loadConfig();
 
-// Create and run engine
+// 创建并运行引擎
 const engine = new Engine();
 const summary = await engine.run();
 
-console.log(`Checked ${summary.totalTargets} targets`);
-console.log(`Changes detected: ${summary.changed}`);
+console.log(`已检查 ${summary.totalTargets} 个目标`);
+console.log(`检测到变更: ${summary.changed}`);
 ```
 
 ---
 
-## 🛠️ Development
+## 🛠️ 开发
 
 ```bash
-# Install dependencies
+# 安装依赖
 npm install
 
-# Build
+# 构建
 npm run build
 
-# Run tests
+# 运行测试
 npm test
 
-# Lint
+# 代码检查
 npm run lint
 
-# Type check
+# 类型检查
 npm run typecheck
 ```
 
 ---
 
-## 📁 Project Structure
+## 📁 项目结构
 
 ```
 ZephyrSentinel/
 ├── src/
-│   ├── cli.ts              # CLI entry point
-│   ├── index.ts            # Library entry point
+│   ├── cli.ts              # CLI 入口
+│   ├── index.ts            # 库入口
 │   ├── core/
-│   │   ├── engine.ts       # Monitoring engine
-│   │   ├── detector.ts    # Change detection
+│   │   ├── engine.ts       # 监控引擎
+│   │   ├── detector.ts    # 变更检测
 │   │   └── result-handler.ts
 │   ├── monitors/
-│   │   ├── base.ts         # Base monitor class
+│   │   ├── base.ts        # 监控器基类
 │   │   ├── webpage.monitor.ts
 │   │   ├── api.monitor.ts
 │   │   └── rss.monitor.ts
 │   ├── notifiers/
-│   │   ├── base.ts         # Base notifier class
+│   │   ├── base.ts        # 通知器基类
 │   │   ├── dingtalk.notifier.ts
 │   │   ├── telegram.notifier.ts
 │   │   ├── slack.notifier.ts
 │   │   └── webhook.notifier.ts
 │   ├── storage/
-│   │   ├── base.ts         # Storage interface
-│   │   └── git.storage.ts  # Git storage
+│   │   ├── base.ts        # 存储接口
+│   │   └── git.storage.ts # Git 存储
 │   ├── config/
-│   │   ├── schema.ts       # Zod schemas
-│   │   └── loader.ts       # Config loader
+│   │   ├── schema.ts     # Zod schema
+│   │   └── loader.ts     # 配置加载器
 │   └── utils/
-│       ├── http.ts         # HTTP utilities
-│       ├── hash.ts         # Hash utilities
-│       ├── diff.ts         # Diff utilities
-│       └── logger.ts       # Logging
+│       ├── http.ts        # HTTP 工具
+│       ├── hash.ts        # 哈希工具
+│       ├── diff.ts        # 差异工具
+│       └── logger.ts      # 日志工具
 ├── tests/
 ├── examples/
 └── docs/
@@ -376,9 +376,9 @@ ZephyrSentinel/
 
 ---
 
-## 🔌 Extending
+## 🔌 扩展开发
 
-### Custom Monitor
+### 自定义监控器
 
 ```typescript
 import { BaseMonitor, type MonitorResult } from "zephyr-sentinel";
@@ -389,7 +389,7 @@ class CustomMonitor extends BaseMonitor {
   }
 
   async check(): Promise<MonitorResult> {
-    // Implement your monitoring logic
+    // 在此实现您的监控逻辑
     const content = await fetchContent(this.url);
     const hash = hashContent(content);
 
@@ -398,7 +398,7 @@ class CustomMonitor extends BaseMonitor {
 }
 ```
 
-### Custom Notifier
+### 自定义通知器
 
 ```typescript
 import { BaseNotifier, type NotificationPayload, type NotificationResult } from "zephyr-sentinel";
@@ -409,11 +409,11 @@ class CustomNotifier extends BaseNotifier<MyConfig> {
   }
 
   async send(payload: NotificationPayload): Promise<NotificationResult> {
-    // Implement your notification logic
+    // 在此实现您的通知逻辑
     const title = this.formatTitle(payload);
     const body = this.formatBody(payload);
 
-    // Send to your service...
+    // 发送到您的服务...
 
     return this.createSuccessResult(duration);
   }
@@ -422,12 +422,12 @@ class CustomNotifier extends BaseNotifier<MyConfig> {
 
 ---
 
-## 📝 License
+## 📝 许可证
 
-MIT License - see the [LICENSE](LICENSE) file for details.
+MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 
 ---
 
-## 🤝 Contributing
+## 🤝 贡献
 
-Contributions are welcome! Please feel free to submit a [Pull Request](https://github.com/lim1202/ZephyrSentinel/pulls).
+欢迎贡献！请随时提交 [Pull Request](https://github.com/lim1202/ZephyrSentinel/pulls)。
