@@ -34,21 +34,35 @@ A powerful **website/API change monitoring and notification system** designed fo
 
 ## 🚀 Quick Start
 
-### 1. Install
+### 1. Fork This Repository
+
+Click the **Fork** button at the top right of this page to create your own copy of the repository.
+
+### 2. Set Up GitHub Secrets
+
+Go to your forked repository → **Settings** → **Secrets and variables** → **Actions**, then add your notification credentials:
+
+| Secret | Description |
+|--------|-------------|
+| `DINGTALK_WEBHOOK` | Your DingTalk webhook URL |
+| `DINGTALK_SECRET` | Your DingTalk signing secret |
+| `TELEGRAM_BOT_TOKEN` | Your Telegram bot token |
+| `TELEGRAM_CHAT_ID` | Your Telegram chat ID |
+| `SLACK_WEBHOOK` | Your Slack webhook URL |
+| `WEBHOOK_URL` | Your custom webhook URL |
+| `WEBHOOK_TOKEN` | Your custom webhook token |
+
+### 3. Create a Monitor Branch
+
+Create a new branch named `monitor/<your-name>`:
 
 ```bash
-npm install -g zephyr-sentinel
+git checkout -b monitor/my-monitor
 ```
 
-Or use directly with npx:
+### 4. Configure Monitoring
 
-```bash
-npx zephyr-sentinel --help
-```
-
-### 2. Create Configuration
-
-Create a `zephyr-sentinel.yaml` file in your repository:
+Create a `zephyr-sentinel.yaml` file in the root of your repository:
 
 ```yaml
 version: "1.0"
@@ -74,59 +88,19 @@ storage:
     path: "state"
 ```
 
-### 3. Set Up GitHub Secrets
+### 5. Push and Activate
 
-Add your notification credentials as repository secrets:
-
-| Secret | Description |
-|--------|-------------|
-| `DINGTALK_WEBHOOK` | Your DingTalk webhook URL |
-| `DINGTALK_SECRET` | Your DingTalk signing secret |
-
-### 4. Create Workflow
-
-Create `.github/workflows/monitor.yml`:
-
-```yaml
-name: Monitor
-
-on:
-  schedule:
-    - cron: '*/30 * * * *'  # Every 30 minutes
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  monitor:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - run: npm ci
-      - run: npm run build
-
-      - name: Run monitoring
-        env:
-          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
-          DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
-        run: node dist/cli.js run
-
-      - name: Commit state
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A state/
-          git diff --quiet --staged || git commit -m "chore: update state [skip ci]"
-          git push
+```bash
+git add zephyr-sentinel.yaml
+git commit -m "feat: add monitoring config"
+git push origin monitor/my-monitor
 ```
+
+Then go to **Actions** → **Monitor** → **Enable workflow** to activate the monitoring.
+
+### 6. (Optional) Customize Workflow
+
+The repository already includes a workflow file at [`.github/workflows/monitor.yml`](.github/workflows/monitor.yml). You can modify the schedule or other settings as needed.
 
 ---
 

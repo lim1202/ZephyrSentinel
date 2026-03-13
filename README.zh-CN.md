@@ -34,21 +34,35 @@
 
 ## 🚀 快速开始
 
-### 1. 安装
+### 1. Fork 本仓库
+
+点击页面右上角的 **Fork** 按钮，创建您自己的仓库副本。
+
+### 2. 配置 GitHub Secrets
+
+进入您 Fork 的仓库 → **Settings** → **Secrets and variables** → **Actions**，添加您的通知凭据：
+
+| 密钥 | 说明 |
+|------|------|
+| `DINGTALK_WEBHOOK` | 钉钉 Webhook 地址 |
+| `DINGTALK_SECRET` | 钉钉签名密钥 |
+| `TELEGRAM_BOT_TOKEN` | Telegram 机器人 Token |
+| `TELEGRAM_CHAT_ID` | Telegram 聊天 ID |
+| `SLACK_WEBHOOK` | Slack Webhook 地址 |
+| `WEBHOOK_URL` | 自定义 Webhook URL |
+| `WEBHOOK_TOKEN` | 自定义 Webhook Token |
+
+### 3. 创建监控分支
+
+创建名为 `monitor/<您的名字>` 的新分支：
 
 ```bash
-npm install -g zephyr-sentinel
+git checkout -b monitor/my-monitor
 ```
 
-或直接使用 npx 运行：
+### 4. 配置监控
 
-```bash
-npx zephyr-sentinel --help
-```
-
-### 2. 创建配置文件
-
-在仓库中创建 `zephyr-sentinel.yaml` 文件：
+在仓库根目录创建 `zephyr-sentinel.yaml` 文件：
 
 ```yaml
 version: "1.0"
@@ -74,59 +88,19 @@ storage:
     path: "state"
 ```
 
-### 3. 配置 GitHub Secrets
+### 5. 推送并激活
 
-将通知凭据添加为仓库密钥（Secrets）：
-
-| 密钥 | 说明 |
-|------|------|
-| `DINGTALK_WEBHOOK` | 钉钉 Webhook 地址 |
-| `DINGTALK_SECRET` | 钉钉签名密钥 |
-
-### 4. 创建工作流
-
-创建 `.github/workflows/monitor.yml`：
-
-```yaml
-name: Monitor
-
-on:
-  schedule:
-    - cron: '*/30 * * * *'  # 每 30 分钟执行一次
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  monitor:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - run: npm ci
-      - run: npm run build
-
-      - name: Run monitoring
-        env:
-          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
-          DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
-        run: node dist/cli.js run
-
-      - name: Commit state
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A state/
-          git diff --quiet --staged || git commit -m "chore: update state [skip ci]"
-          git push
+```bash
+git add zephyr-sentinel.yaml
+git commit -m "feat: 添加监控配置"
+git push origin monitor/my-monitor
 ```
+
+然后进入 **Actions** → **Monitor** → **Enable workflow** 激活监控。
+
+### 6. (可选) 自定义工作流
+
+仓库已包含工作流文件 [`.github/workflows/monitor.yml`](.github/workflows/monitor.yml)。您可以根据需要修改调度时间或其他设置。
 
 ---
 

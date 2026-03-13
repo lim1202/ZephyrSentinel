@@ -34,21 +34,35 @@
 
 ## 🚀 クイックスタート
 
-### 1. インストール
+### 1. このリポジトリを Fork
+
+ページ右上の **Fork** ボタンをクリックして、個人のコピーを作成します。
+
+### 2. GitHub Secrets の設定
+
+Fork したリポジトリ → **Settings** → **Secrets and variables** → **Actions** で通知资格情報を追加：
+
+| Secret | 説明 |
+|--------|------|
+| `DINGTALK_WEBHOOK` | 钉钉 Webhook URL |
+| `DINGTALK_SECRET` | 钉钉 署名シークレット |
+| `TELEGRAM_BOT_TOKEN` | Telegram ボットトークン |
+| `TELEGRAM_CHAT_ID` | Telegram チャットID |
+| `SLACK_WEBHOOK` | Slack Webhook URL |
+| `WEBHOOK_URL` | カスタム Webhook URL |
+| `WEBHOOK_TOKEN` | カスタム Webhook トークン |
+
+### 3. モニターブランチを作成
+
+`monitor/<あなたの名前>` という名前のブランチを作成：
 
 ```bash
-npm install -g zephyr-sentinel
+git checkout -b monitor/my-monitor
 ```
 
-または npx で直接使用：
+### 4. 監視を設定
 
-```bash
-npx zephyr-sentinel --help
-```
-
-### 2. 設定ファイルの作成
-
-リポジトリに `zephyr-sentinel.yaml` ファイルを作成：
+リポジトリのルートに `zephyr-sentinel.yaml` ファイルを作成：
 
 ```yaml
 version: "1.0"
@@ -74,59 +88,19 @@ storage:
     path: "state"
 ```
 
-### 3. GitHub Secrets の設定
+### 5. プッシュして有効化
 
-通知 자격 증명을リポジトリの Secrets として追加：
-
-| Secret | 説明 |
-|--------|------|
-| `DINGTALK_WEBHOOK` | 钉钉 Webhook URL |
-| `DINGTALK_SECRET` | 钉钉 署名シークレット |
-
-### 4. ワークフローの作成
-
-`.github/workflows/monitor.yml` を作成：
-
-```yaml
-name: Monitor
-
-on:
-  schedule:
-    - cron: '*/30 * * * *'  # 30分ごとに実行
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  monitor:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - run: npm ci
-      - run: npm run build
-
-      - name: Run monitoring
-        env:
-          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
-          DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
-        run: node dist/cli.js run
-
-      - name: Commit state
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A state/
-          git diff --quiet --staged || git commit -m "chore: update state [skip ci]"
-          git push
+```bash
+git add zephyr-sentinel.yaml
+git commit -m "feat: 監視設定を追加"
+git push origin monitor/my-monitor
 ```
+
+その後 **Actions** → **Monitor** → **Enable workflow** で監視を有効化します。
+
+### 6. (オプション) ワークフローのカスタマイズ
+
+リポジトリにはすでに [`.github/workflows/monitor.yml`](.github/workflows/monitor.yml) が含まれています。スケジュールやその他の設定を必要に応じて変更できます。
 
 ---
 
