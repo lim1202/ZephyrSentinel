@@ -20,6 +20,7 @@ export class GitStorage implements IStorage {
   private stateDir: string;
   private stateFile: string;
   private initialized = false;
+  private saveQueue: Promise<void> = Promise.resolve();
 
   constructor(config?: StorageConfig) {
     const gitConfig = config?.git;
@@ -71,9 +72,14 @@ export class GitStorage implements IStorage {
   }
 
   async updateTargetState(targetId: string, targetState: TargetState): Promise<void> {
-    const state = await this.load();
-    state.targets[targetId] = targetState;
-    await this.save(state);
+    // Serialize all state updates to prevent concurrent write conflicts
+    await this.saveQueue;
+    this.saveQueue = (async () => {
+      const state = await this.load();
+      state.targets[targetId] = targetState;
+      await this.save(state);
+    })();
+    await this.saveQueue;
   }
 
   async isAvailable(): Promise<boolean> {
@@ -120,6 +126,7 @@ export class GitStorage implements IStorage {
  */
 export class LocalStorage implements IStorage {
   private stateFile: string;
+  private saveQueue: Promise<void> = Promise.resolve();
 
   constructor(config?: StorageConfig) {
     this.stateFile = path.join(config?.local?.path ?? "./state", "monitor-state.json");
@@ -150,9 +157,14 @@ export class LocalStorage implements IStorage {
   }
 
   async updateTargetState(targetId: string, targetState: TargetState): Promise<void> {
-    const state = await this.load();
-    state.targets[targetId] = targetState;
-    await this.save(state);
+    // Serialize all state updates to prevent concurrent write conflicts
+    await this.saveQueue;
+    this.saveQueue = (async () => {
+      const state = await this.load();
+      state.targets[targetId] = targetState;
+      await this.save(state);
+    })();
+    await this.saveQueue;
   }
 
   async isAvailable(): Promise<boolean> {
