@@ -1,26 +1,26 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-04-03T09:50:36.205Z",
+  "updatedAt": "2026-04-03T10:40:51.457Z",
   "targets": {
     "crimsonwitch-zenless": {
       "id": "crimsonwitch-zenless",
-      "lastCheck": "2026-04-03T09:50:36.144Z",
+      "lastCheck": "2026-04-03T10:40:51.455Z",
       "lastHash": "ae6a2e476267dae1f279eaf9649982e101bf4d32aa46dd033ab834f03e72690b",
       "lastContent": "[\n  {\n    \"title\": \"ZZZ27CHAMPION\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero#ZZZ27CHAMPION\",\n    \"description\": \"Polychrome x60 — Denny x6666\",\n    \"pubDate\": \"Sun, 15 Mar 2026 13:28:46 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  },\n  {\n    \"title\": \"ZZZCUTENESS\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero#ZZZCUTENESS\",\n    \"description\": \"W-Engine Energy Module x1 — Denny x20000\",\n    \"pubDate\": \"Sat, 07 Feb 2026 20:51:47 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  },\n  {\n    \"title\": \"ZENLESSGIFT\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero#ZENLESSGIFT\",\n    \"description\": \"Polychrome x50 — Official Investigator Log x2 — W-Engine Power Supply x3 — Bangboo Algorithm Module x1\",\n    \"pubDate\": \"Thu, 04 Jul 2024 00:00:00 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Zenless_Zone_Zero\"\n  }\n]",
       "lastSuccess": true,
       "lastError": null,
-      "checkCount": 427,
+      "checkCount": 428,
       "changeCount": 5,
       "lastChangeAt": "2026-03-31T02:06:06.026Z"
     },
     "crimsonwitch-genshin": {
       "id": "crimsonwitch-genshin",
-      "lastCheck": "2026-04-03T09:50:36.204Z",
+      "lastCheck": "2026-04-03T10:40:51.450Z",
       "lastHash": "719c56ad2f7adc89bc1dafbd674b28073fdc9bc3706a93ac5b3d54bb1e20e2b5",
       "lastContent": "[\n  {\n    \"title\": \"LIVESTREAM CODE 1\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact#LIVESTREAM CODE 1\",\n    \"description\": \"Primogem x100 — Mystic Enhancement Ore x10\",\n    \"pubDate\": \"Fri, 08 May 2026 12:00:00 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  },\n  {\n    \"title\": \"08.05.2026 12:00:00\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact#08.05.2026 12:00:00\",\n    \"description\": \"Primogem x100 — Hero's Wit x5\",\n    \"pubDate\": \"Fri, 08 May 2026 12:00:00 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  },\n  {\n    \"title\": \"LIVESTREAM CODE 3\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact#LIVESTREAM CODE 3\",\n    \"description\": \"Primogem x100 — Mora x50000\",\n    \"pubDate\": \"Fri, 08 May 2026 12:00:00 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  },\n  {\n    \"title\": \"PSCA8NL4ZSPD\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact#PSCA8NL4ZSPD\",\n    \"description\": \"Primogem x60 — Adventurer's Experience x5\",\n    \"pubDate\": \"Mon, 30 Mar 2026 14:37:50 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  },\n  {\n    \"title\": \"MIXF44DAP7HW\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact#MIXF44DAP7HW\",\n    \"description\": \"Primogem x20 — Geode of Replication x160\",\n    \"pubDate\": \"Tue, 24 Mar 2026 10:45:07 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  },\n  {\n    \"title\": \"RFVEZO83458Q\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact#RFVEZO83458Q\",\n    \"description\": \"Mora x10000 — Adventurer's Experience x10 — Fine Enhancement Ore x5 — Jueyun Chili Chicken x5 — Stir-Fried Fish Noodles x5\",\n    \"pubDate\": \"Wed, 18 Mar 2026 05:40:52 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  },\n  {\n    \"title\": \"8BHA0KFRG94K\",\n    \"link\": \"https://www.crimsonwitch.com/codes/Genshin_Impact#8BHA0KFRG94K\",\n    \"description\": \"Primogem x60 — Adventurer's Experience x5\",\n    \"pubDate\": \"Sat, 14 Feb 2026 12:28:22 GMT\",\n    \"guid\": \"https://www.crimsonwitch.com/codes/Genshin_Impact\"\n  }\n]",
       "lastSuccess": true,
       "lastError": null,
-      "checkCount": 427,
+      "checkCount": 428,
       "changeCount": 11,
       "lastChangeAt": "2026-04-02T23:40:32.155Z"
     }
