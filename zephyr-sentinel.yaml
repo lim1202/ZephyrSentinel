@@ -1,0 +1,31 @@
+version: "1.0"
+
+targets:
+  - id: "mahjongsoul-wallpapers"
+    name: "雀魂壁纸列表"
+    url: "https://mahjongsoul.com/api/assets/wallpaper?pageIndex=1&pageNum=100"
+    webUrl: "https://mahjongsoul.com/wallpapers"
+    type: "api"
+    jsonPath: "$.data.rows"
+    enabled: true
+    http:
+      headers:
+        User-Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
+        Accept: "application/json, text/plain, */*"
+        Referer: "https://mahjongsoul.com/wallpapers"
+    alertOn:
+      change: true
+      error: true
+      recovery: true
+
+notifications:
+  telegram:
+    enabled: true
+    botToken: "${TELEGRAM_BOT_TOKEN}"
+    chatId: "${TELEGRAM_CHAT_ID}"
+    parseMode: "HTML"
+
+storage:
+  type: "git"
+  git:
+    path: "state"
