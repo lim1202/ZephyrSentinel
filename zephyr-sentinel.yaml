@@ -1,0 +1,32 @@
+version: "1.0"
+
+targets:
+  - id: "netmarble-monster2-artworks"
+    name: "Netmarble Monster2 Artworks (JA)"
+    url: "https://gamemediahub.netmarble.com/api/resource/list?gameCode=monster2&locale=JA_JP&size=10&pageNum=0&resourceSeq=15"
+    webUrl: "https://gamemediahub.netmarble.com/ja/game/monster2?tab=15&page=1"
+    type: "api"
+    jsonPath: "$.resultData[*].subResourceList[*]"
+    enabled: true
+    http:
+      headers:
+        Accept: "*/*"
+        Accept-Language: "zh-CN,zh-TW;q=0.9,zh;q=0.8,en;q=0.7,ja;q=0.6"
+        Referer: "https://gamemediahub.netmarble.com/ja/game/monster2?tab=15&page=1"
+        User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+    alertOn:
+      change: true
+      error: true
+      recovery: true
+
+notifications:
+  telegram:
+    enabled: true
+    botToken: "${TELEGRAM_BOT_TOKEN}"
+    chatId: "${TELEGRAM_CHAT_ID}"
+    parseMode: "HTML"
+
+storage:
+  type: "git"
+  git:
+    path: "state"
