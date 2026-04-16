@@ -6,7 +6,7 @@ targets:
     url: "https://gamemediahub.netmarble.com/api/resource/list?gameCode=monster2&locale=JA_JP&size=10&pageNum=0&resourceSeq=15"
     webUrl: "https://gamemediahub.netmarble.com/ja/game/monster2?tab=15&page=1"
     type: "api"
-    jsonPath: "$.resultData[0].publishDate"
+    jsonPath: "$.resultData[0]"
     enabled: true
     http:
       headers:
