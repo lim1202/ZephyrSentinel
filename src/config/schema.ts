@@ -45,7 +45,6 @@ export const WebpageConfigSchema = z.object({
 export const ApiConfigSchema = z.object({
   type: z.literal("api"),
   jsonPath: z.string().optional(),
-  jqFilter: z.string().optional(),
 });
 
 /**
