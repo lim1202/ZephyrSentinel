@@ -81,18 +81,18 @@ export class ApiMonitor extends BaseMonitor {
       return data;
     }
 
-    try {
-      const result = JSONPath({
-        path: this.apiConfig.jsonPath,
-        json: data as Record<string, unknown>,
-        wrap: false,
-      });
-      return result;
-    } catch (error) {
-      logger.warn(
-        `JSONPath extraction failed for ${this.id}: ${error instanceof Error ? error.message : String(error)}`
+    const result = JSONPath({
+      path: this.apiConfig.jsonPath,
+      json: data as Record<string, unknown>,
+      wrap: false,
+    });
+
+    if (result === undefined) {
+      throw new Error(
+        `JSONPath '${this.apiConfig.jsonPath}' returned no results for target ${this.id}`
       );
-      return data;
     }
+
+    return result;
   }
 }
