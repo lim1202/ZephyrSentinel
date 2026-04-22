@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ ZephyrSentinel
+# 🛡️ Mutation Watcher
 
 <!-- badges -->
 [![Test](https://github.com/lim1202/ZephyrSentinel/actions/workflows/test.yml/badge.svg)](https://github.com/lim1202/ZephyrSentinel/actions/workflows/test.yml)
@@ -62,7 +62,7 @@ git checkout -b monitor/my-monitor
 
 ### 4. Configure Monitoring
 
-Create a `zephyr-sentinel.yaml` file in the root of your repository:
+Create a `monitor.yaml` file in the root of your repository:
 
 ```yaml
 version: "1.0"
@@ -91,7 +91,7 @@ storage:
 ### 5. Push and Activate
 
 ```bash
-git add zephyr-sentinel.yaml
+git add monitor.yaml
 git commit -m "feat: add monitoring config"
 git push origin monitor/my-monitor
 ```
@@ -203,7 +203,7 @@ notifications:
     enabled: true
     webhook: "${SLACK_WEBHOOK}"
     channel: "#alerts"             # Optional override
-    username: "ZephyrSentinel"     # Optional bot name
+    username: "MutationWatcher"     # Optional bot name
     iconEmoji: ":bell:"            # Optional icon
 ```
 
@@ -250,23 +250,23 @@ targets:
 
 ```bash
 # Run monitoring checks
-npx zephyr-sentinel run
+npx mutation-watcher run
 
 # Run for specific target
-npx zephyr-sentinel run --target my-website
+npx mutation-watcher run --target my-website
 
 # Dry run (no state save, no notifications)
-npx zephyr-sentinel run --dry-run
+npx mutation-watcher run --dry-run
 
 # Test notification channels
-npx zephyr-sentinel test
-npx zephyr-sentinel test dingtalk
+npx mutation-watcher test
+npx mutation-watcher test dingtalk
 
 # Validate configuration
-npx zephyr-sentinel validate
+npx mutation-watcher validate
 
 # Show monitoring status
-npx zephyr-sentinel status
+npx mutation-watcher status
 ```
 
 ---
@@ -274,7 +274,7 @@ npx zephyr-sentinel status
 ## 💻 Programmatic Usage
 
 ```typescript
-import { Engine, loadConfig } from "zephyr-sentinel";
+import { Engine, loadConfig } from "mutation-watcher";
 
 // Load configuration
 const config = await loadConfig();
@@ -313,7 +313,7 @@ npm run typecheck
 ## 📁 Project Structure
 
 ```
-ZephyrSentinel/
+MutationWatcher/
 ├── src/
 │   ├── cli.ts              # CLI entry point
 │   ├── index.ts            # Library entry point
@@ -355,7 +355,7 @@ ZephyrSentinel/
 ### Custom Monitor
 
 ```typescript
-import { BaseMonitor, type MonitorResult } from "zephyr-sentinel";
+import { BaseMonitor, type MonitorResult } from "mutation-watcher";
 
 class CustomMonitor extends BaseMonitor {
   get type() {
@@ -375,7 +375,7 @@ class CustomMonitor extends BaseMonitor {
 ### Custom Notifier
 
 ```typescript
-import { BaseNotifier, type NotificationPayload, type NotificationResult } from "zephyr-sentinel";
+import { BaseNotifier, type NotificationPayload, type NotificationResult } from "mutation-watcher";
 
 class CustomNotifier extends BaseNotifier<MyConfig> {
   get channel() {

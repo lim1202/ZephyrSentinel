@@ -1,12 +1,12 @@
 {
-  "name": "zephyr-sentinel",
+  "name": "mutation-watcher",
   "version": "1.0.0",
   "description": "A website/API change monitoring and notification system designed for GitHub Actions",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "zephyr-sentinel": "dist/cli.js"
+    "mutation-watcher": "dist/cli.js"
   },
   "scripts": {
     "build": "tsup",

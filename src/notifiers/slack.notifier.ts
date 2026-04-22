@@ -87,7 +87,7 @@ export class SlackNotifier extends BaseNotifier<SlackConfig> {
           color,
           title,
           text: body,
-          footer: "ZephyrSentinel",
+          footer: "MutationWatcher",
           ts: Math.floor(Date.now() / 1000),
           actions: [
             {

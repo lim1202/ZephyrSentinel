@@ -79,7 +79,7 @@ export async function httpGet(url: string, options: HttpOptions = {}): Promise<H
     url,
     timeout: opts.timeout,
     headers: {
-      "User-Agent": "ZephyrSentinel/1.0",
+      "User-Agent": "MutationWatcher/1.0",
       Accept: "*/*",
       ...options.headers,
     },
@@ -155,7 +155,7 @@ export async function httpPost(
     timeout: opts.timeout,
     data,
     headers: {
-      "User-Agent": "ZephyrSentinel/1.0",
+      "User-Agent": "MutationWatcher/1.0",
       "Content-Type": "application/json",
       ...options.headers,
     },
