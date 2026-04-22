@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-ZephyrSentinel is a website/API change monitoring and notification system designed for GitHub Actions. It monitors webpages, APIs, and RSS feeds, detects changes via hash comparison, and sends notifications through DingTalk, Telegram, Slack, or webhooks.
+Mutation Watcher is a website/API change monitoring and notification system designed for GitHub Actions. It monitors webpages, APIs, and RSS feeds, detects changes via hash comparison, and sends notifications through DingTalk, Telegram, Slack, or webhooks.
 
 ## Commands
 
@@ -69,7 +69,7 @@ Commands: `run`, `test`, `validate`, `status`. Uses `commander.js`.
 
 ## Configuration
 
-Config file: `zephyr-sentinel.yaml` (or custom via `-c, --config`).
+Config file: `monitor.yaml` (or custom via `-c, --config`).
 
 Environment variables supported via `${VAR_NAME}` syntax in YAML values.
 

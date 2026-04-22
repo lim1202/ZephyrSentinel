@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ ZephyrSentinel
+# 🛡️ Mutation Watcher
 
 <!-- badges -->
 [![Test](https://github.com/lim1202/ZephyrSentinel/actions/workflows/test.yml/badge.svg)](https://github.com/lim1202/ZephyrSentinel/actions/workflows/test.yml)
@@ -62,7 +62,7 @@ git checkout -b monitor/my-monitor
 
 ### 4. 監視を設定
 
-リポジトリのルートに `zephyr-sentinel.yaml` ファイルを作成：
+リポジトリのルートに `monitor.yaml` ファイルを作成：
 
 ```yaml
 version: "1.0"
@@ -91,7 +91,7 @@ storage:
 ### 5. プッシュして有効化
 
 ```bash
-git add zephyr-sentinel.yaml
+git add monitor.yaml
 git commit -m "feat: 監視設定を追加"
 git push origin monitor/my-monitor
 ```
@@ -203,7 +203,7 @@ notifications:
     enabled: true
     webhook: "${SLACK_WEBHOOK}"
     channel: "#alerts"               # オプションのオーバーライド
-    username: "ZephyrSentinel"       # オプションのボット名
+    username: "MutationWatcher"       # オプションのボット名
     iconEmoji: ":bell:"              # オプションのアイコン
 ```
 
@@ -250,23 +250,23 @@ targets:
 
 ```bash
 # 監視チェックを実行
-npx zephyr-sentinel run
+npx mutation-watcher run
 
 # 特定のターゲットのみ実行
-npx zephyr-sentinel run --target my-website
+npx mutation-watcher run --target my-website
 
 # ドライラン（状態保存・通知なし）
-npx zephyr-sentinel run --dry-run
+npx mutation-watcher run --dry-run
 
 # 通知チャネルのテスト
-npx zephyr-sentinel test
-npx zephyr-sentinel test dingtalk
+npx mutation-watcher test
+npx mutation-watcher test dingtalk
 
 # 設定の検証
-npx zephyr-sentinel validate
+npx mutation-watcher validate
 
 # 監視ステータスの表示
-npx zephyr-sentinel status
+npx mutation-watcher status
 ```
 
 ---
@@ -274,7 +274,7 @@ npx zephyr-sentinel status
 ## 💻 プログラムからの使用
 
 ```typescript
-import { Engine, loadConfig } from "zephyr-sentinel";
+import { Engine, loadConfig } from "mutation-watcher";
 
 // 設定を読み込む
 const config = await loadConfig();
@@ -313,7 +313,7 @@ npm run typecheck
 ## 📁 プロジェクト構造
 
 ```
-ZephyrSentinel/
+MutationWatcher/
 ├── src/
 │   ├── cli.ts              # CLI エントリーポイント
 │   ├── index.ts           # ライブラリエントリーポイント
@@ -355,7 +355,7 @@ ZephyrSentinel/
 ### カスタムモニター
 
 ```typescript
-import { BaseMonitor, type MonitorResult } from "zephyr-sentinel";
+import { BaseMonitor, type MonitorResult } from "mutation-watcher";
 
 class CustomMonitor extends BaseMonitor {
   get type() {
@@ -375,7 +375,7 @@ class CustomMonitor extends BaseMonitor {
 ### カスタム_notifier
 
 ```typescript
-import { BaseNotifier, type NotificationPayload, type NotificationResult } from "zephyr-sentinel";
+import { BaseNotifier, type NotificationPayload, type NotificationResult } from "mutation-watcher";
 
 class CustomNotifier extends BaseNotifier<MyConfig> {
   get channel() {
