@@ -9,7 +9,7 @@ import { logger } from "./utils/logger.js";
 const program = new Command();
 
 program
-  .name("zephyr-sentinel")
+  .name("mutation-watcher")
   .description("Website/API change monitoring and notification system")
   .version("1.0.0")
   .option("-c, --config <path>", "Path to configuration file")

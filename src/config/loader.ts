@@ -9,11 +9,11 @@ import { type Config, ConfigSchema } from "./schema.js";
  * Configuration file names to search for
  */
 const CONFIG_FILES = [
-  "zephyr-sentinel.yaml",
-  "zephyr-sentinel.yml",
+  "monitor.yaml",
+  "monitor.yml",
   "config.yaml",
   "config.yml",
-  ".zephyr-sentinel.yaml",
+  ".monitor.yaml",
 ];
 
 /**
@@ -32,7 +32,7 @@ export async function loadConfig(options: ConfigLoaderOptions = {}): Promise<Con
 
   if (!configPath) {
     throw new ConfigError(
-      "Configuration file not found. Create a zephyr-sentinel.yaml file or specify a path."
+      "Configuration file not found. Create a monitor.yaml file or specify a path."
     );
   }
 
@@ -162,8 +162,8 @@ export function getDefaultConfig(): Partial<Config> {
         branch: "state",
         path: "state",
         commitMessage: "chore: update monitoring state [skip ci]",
-        authorName: "zephyr-sentinel[bot]",
-        authorEmail: "zephyr-sentinel[bot]@users.noreply.github.com",
+        authorName: "mutation-watcher[bot]",
+        authorEmail: "mutation-watcher[bot]@users.noreply.github.com",
       },
     },
   };
