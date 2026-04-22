@@ -169,8 +169,8 @@ export const GitStorageConfigSchema = z.object({
   branch: z.string().default("state"),
   path: z.string().default("state"),
   commitMessage: z.string().default("chore: update monitoring state [skip ci]"),
-  authorName: z.string().default("zephyr-sentinel[bot]"),
-  authorEmail: z.string().default("zephyr-sentinel[bot]@users.noreply.github.com"),
+  authorName: z.string().default("mutation-watcher[bot]"),
+  authorEmail: z.string().default("mutation-watcher[bot]@users.noreply.github.com"),
 });
 
 /**
