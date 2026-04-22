@@ -8,13 +8,7 @@ import { type Config, ConfigSchema } from "./schema.js";
 /**
  * Configuration file names to search for
  */
-const CONFIG_FILES = [
-  "monitor.yaml",
-  "monitor.yml",
-  "config.yaml",
-  "config.yml",
-  ".monitor.yaml",
-];
+const CONFIG_FILES = ["monitor.yaml", "monitor.yml", "config.yaml", "config.yml", ".monitor.yaml"];
 
 /**
  * Configuration loader options
